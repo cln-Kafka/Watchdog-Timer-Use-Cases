@@ -27,6 +27,7 @@ int main()
     while (1)
     {
         LEDM_Manage();
+        WDGM_MainFunction();
     }
 
     return 0;

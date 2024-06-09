@@ -61,13 +61,8 @@ void WDGDrv_Init(void)
     WWDG_CR = WWDG_CR_WDGA | WWDG_CR_T;
 
     // Enable WWDG interrupt in NVIC
+    Nvic_EnableInterrupt(0);
     // (You may need to implement this depending on your platform)
-}
-
-// Example NVIC setup function (implementation may vary)
-void NVIC_EnableIRQ(uint32_t IRQn)
-{
-    // Implement NVIC setup here
 }
 
 // Definition of the function
