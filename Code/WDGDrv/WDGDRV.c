@@ -1,3 +1,10 @@
+/**
+ * WDGDRV.c
+ *
+ *  Created on  :   Sun 09 JUN 2024
+ *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr, Nouran Mahmoud
+ */
+
 #include <stdint.h>
 
 // Memory map addresses for RCC and WWDG peripherals
@@ -19,8 +26,6 @@
 #define WWDG_CFR_W (0x7F)
 #define WWDG_CFR_WDGTB (3 << 7)
 #define WWDG_CFR_EWI (1 << 9)
-
-// === FUNCTIONS === //
 
 // Interrupt handler for WWDG
 void WWDG_IRQHandler(void)

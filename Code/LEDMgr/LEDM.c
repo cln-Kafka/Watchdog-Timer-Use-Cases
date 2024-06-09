@@ -9,35 +9,38 @@
 #include "GPIO.h"
 #include "Std_Types.h"
 
-/*LED is initially turned OFF*/
-static int led_state = 0;
-
 /*PinNum*/
 #define PinNum 4
 
-void delay(uint32 time)
-{
-    volatile uint32 i;
-    for (i = 0; i < time; i++)
-    {
-    }
-}
+#define LED_ON 1
+#define LED_OFF 0
+
+// Time elapsed since the last state change, Maximum value is 500
+static uint32 elapsedTime = 0;
+static uint8 ledState = LED_OFF; // Initially the LED is off
 
 void LEDM_Init(void)
 {
-    GPIO_init();
-    led_state = 0;
+    GPIO_Init();
+    GPIO_Write(PinNum, ledState);
 }
 
 void LEDM_Manage(void)
 {
-    GPIO_Write(PinNum, led_state);
-    led_state = !led_state;
+    // Increment elapsed time by 10ms
+    elapsedTime += 10;
 
-    delay(500000); // Make a delay for 500ms
+    // Check if 500ms has passed
+    if (elapsedTime >= 500)
+    {
+        // Toggle LED state
+        ledState = (ledState == LED_ON) ? LED_OFF : LED_ON;
+        GPIO_Write(PinNum, ledState);
 
-    GPIO_Write(PinNum, led_state);
-    led_state = !led_state;
+        // Reset the elapsed time counter
+        elapsedTime = 0;
+    }
 
-    delay(500000); // Make a delay for 500ms
+    // Indicate aliveness to the watchdog manager
+    WDGM_AlivenessIndication();
 }

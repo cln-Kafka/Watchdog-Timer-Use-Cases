@@ -1,8 +1,8 @@
 /**
- * Nvic.h
+ * NVIC.h
  *
- *  Created on: Mon May 13 2024
- *  Author    : Abdallah Darwish
+ *  Created on  :   Sun 09 JUN 2024
+ *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr, Nouran Mahmoud
  */
 
 #ifndef NVIC_H

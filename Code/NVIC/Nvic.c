@@ -1,10 +1,8 @@
 /**
- * Nvic.c
+ * NVIC.c
  *
- *  Created on  : Wed May 22 2024
- *  Author      : Kareem Salah (Sec:02, Bn:04)
- *                Mohamed Sayed Diab (Sec:02, Bn:15)
- *  Team Number : 35
+ *  Created on  :   Sun 09 JUN 2024
+ *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr, Nouran Mahmoud
  */
 
 #include "Nvic.h"
