@@ -28,7 +28,7 @@ void WDGM_Init(void)
 void WDGM_MainFunction(void)
 {
     // Increment elapsed time by 10ms
-    elapsedTime += 20;
+    elapsedTime += 10;
 
     // Check if 500ms has passed
     if (elapsedTime >= 100)

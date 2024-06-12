@@ -8,6 +8,7 @@
 #include "GPIO.h"
 
 /*Standard Types*/
+typedef unsigned char uint8;
 typedef unsigned long uint32;
 
 /*PortName*/
