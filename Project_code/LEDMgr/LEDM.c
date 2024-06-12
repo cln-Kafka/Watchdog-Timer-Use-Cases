@@ -7,7 +7,10 @@
 
 #include "LEDM.h"
 #include "GPIO.h"
-#include "Std_Types.h"
+
+/*Standard Types*/
+typedef unsigned char uint8;
+typedef unsigned long uint32;
 
 /*PinNum*/
 #define PinNum 4

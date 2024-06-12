@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "wdgm.h": "c",
+        "std_types.h": "c"
+    }
+}

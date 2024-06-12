@@ -7,80 +7,91 @@
 
 #include <stdint.h>
 #include "NVIC.h"
+#include "WDGM.h"
 
-// Memory map addresses for RCC and WWDG peripherals
-#define RCC_BASE_ADDR 0x40023800
-#define WWDG_BASE_ADDR 0x40002C00
+/*Base addresses for peripherals*/
+#define RCC_BASE 0x40023800  // Memory Map: page 38
+#define WWDG_BASE 0x40002C00 // Memory Map: page 39
 
-// RCC peripheral registers
-#define RCC_APB1ENR (*(volatile uint32_t *)(RCC_BASE_ADDR + 0x40))
+/*Register Offsets*/
+#define RCC_APB1ENR *((volatile uint32_t *)(RCC_BASE + 0x40))
+#define WWDG_CR *((volatile uint32_t *)(WWDG_BASE + 0x00))
+#define WWDG_CFR *((volatile uint32_t *)(WWDG_BASE + 0x04))
+#define WWDG_SR *((volatile uint32_t *)(WWDG_BASE + 0x08))
 
-// WWDG peripheral registers
-#define WWDG_CR (*(volatile uint32_t *)(WWDG_BASE_ADDR + 0x00))
-#define WWDG_CFR (*(volatile uint32_t *)(WWDG_BASE_ADDR + 0x04))
-#define WWDG_SR (*(volatile uint32_t *)(WWDG_BASE_ADDR + 0x08))
+/*Bit Positions*/
+// Control Register (CR) -> WWDG: page 431
+#define WWDG_CR_WDGA 7 // for activated watchdog
+#define WWDG_CR_T 0
+#define WWDG_CR_T_Msk (0x7F << WWDG_CR_T)
 
-// WWDG bit definitions
-#define WWDG_CR_WDGA (1 << 7)
-#define WWDG_CR_T (0x7F)
+// Configuration Register (CFR) -> WWDG: page 432
+#define WWDG_CFR_EWI 9   // Early Wakeup Interrupt
+#define WWDG_CFR_WDGTB 7 // Prescaler
+#define WWDG_CFR_W 0     // Window value
 
-#define WWDG_CFR_W (0x7F)
-#define WWDG_CFR_WDGTB (3 << 7)
-#define WWDG_CFR_EWI (1 << 9)
+// Status Register (SR) -> WWDG: page 432
+#define WWDG_SR_EWIF 0
 
-// Interrupt handler for WWDG
-void WWDG_IRQHandler(void)
-{
-    // Check for early wakeup interrupt
-    if (WWDG_SR & WWDG_CFR_EWI)
-    {
-        // Clear the early wakeup interrupt flag
-        WWDG_SR &= ~(WWDG_CFR_EWI);
+#define RCC_APB1ENR_WWDGEN 11 // for enabling the clock, RCC: page 138
 
-        // Reload the WWDG counter
-        WWDG_CR = WWDG_CR_WDGA | WWDG_CR_T;
-    }
-}
+/*For initialization of WWDG*/
+#define PCLK1_FREQ 24000000
+#define WWDG_PRESCALER 8
+#define WWDG_TIMEOUT 50
 
-// Initialize the Window Watchdog (WWDG)
+// Calculate the counter value based on the desired timeout and prescaler
+#define WWDG_COUNTER_VALUE (uint8_t)(((PCLK1_FREQ / 4096) * WWDG_TIMEOUT) / (2 * WWDG_PRESCALER))
+
+/*For enabling the interrrup (NVIC), page 203*/
+#define WWDG_IRQn 0 // from the datasheet, NVIC: page 203
+
 void WDGDrv_Init(void)
 {
-    // Enable clock for WWDG
-    RCC_APB1ENR |= (1 << 11); // Set bit 11
+    // Enable the clock for the WWDG
+    RCC_APB1ENR |= (1 << RCC_APB1ENR_WWDGEN); // RCC: page 138
 
-    // Configure WWDG
-    // Set the prescaler to divide by 8
-    WWDG_CFR |= (2 << 7); // Set bits 8 and 7
+    // We can combine the following in one line, but i splitted it to be easy to understand
+    WWDG_CFR |= (1 << WWDG_CFR_EWI);   // Enable "Early Wakeup Interrupt"
+    WWDG_CFR |= (3 << WWDG_CFR_WDGTB); // Set prescaler to 8 (WDGTB = 3, (11) in binary)
+    WWDG_CFR |= (0x7F);                // Disable window by setting it to maximum vlaue
 
-    // Set the window value to maximum (0x7F)
-    WWDG_CFR |= WWDG_CFR_W;
+    // Enable/Activate the WWDG
+    WWDG_CR = (WWDG_COUNTER_VALUE & WWDG_CR_T_Msk);
+    WWDG_CR |= (1 << WWDG_CR_WDGA);
 
-    // Enable Early Wakeup Interrupt
-    WWDG_CFR |= WWDG_CFR_EWI;
-
-    // Enable WWDG and set the counter value
-    WWDG_CR = WWDG_CR_WDGA | WWDG_CR_T;
-
-    // Enable WWDG interrupt in NVIC
-    Nvic_EnableInterrupt(0);
-    // (You may need to implement this depending on your platform)
+    // Enable the Early Wakeup Interrupt in the NVIC
+    Nvic_EnableInterrupt(WWDG_IRQn);
 }
 
-// Definition of the function
 void WDGDrv_IsrNotification(void)
 {
-    // Condition 1: WDGM_MainFunction is not stuck
-    // (You need to implement this condition based on your application logic)
-    // Example: Check if some periodic task or heartbeat signal is being received regularly
+    WDGM_StatusType wdgmStatus = WDGM_PovideSuppervisionStatus();
 
-    // Condition 2: The WDGM State set by the WDGM_MainFunction is OK
-    // (You need to implement this condition based on your application logic)
-    // Example: Check if some system state variable indicates that everything is operating normally
-
-    // If both conditions are satisfied, refresh the watchdog timer
-    if (1 /* Condition 1 */ && 1 /* Condition 2 */)
-    {
-        // Reload the WWDG counter
-        WWDG_CR = WWDG_CR_WDGA | WWDG_CR_T;
-    }
+    // // Check if WDGM_MainFunction is not stuck and wdgmStatus is OK
+    // if (wdgmStatus == OK && WDGM_MainFunction())
+    // {
+    //     // Reload the WWDG counter
+    //     WWDG_CR = WWDG_COUNTER_VALUE & WWDG_CR_T_Msk;
+    // }
 }
+
+/* WWDG interrupt handler */
+void WWDG_IRQHandler(void)
+{
+    // Clear the Early Wakeup Interrupt Flag
+}
+
+// Interrupt handler for WWDG
+// void WWDG_IRQHandler(void)
+// {
+//     // Check for early wakeup interrupt
+//     if (WWDG_SR & WWDG_CFR_EWI)
+//     {
+//         // Clear the early wakeup interrupt flag
+//         WWDG_SR &= ~(WWDG_CFR_EWI);
+
+//         // Reload the WWDG counter
+//         WWDG_CR = WWDG_CR_WDGA | WWDG_CR_T;
+//     }
+// }
