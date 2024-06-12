@@ -7,6 +7,7 @@
 
 #include "LEDM.h"
 #include "GPIO.h"
+#include "WDGM.h"
 
 /*Standard Types*/
 typedef unsigned char uint8;

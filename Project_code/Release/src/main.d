@@ -1,9 +1,9 @@
 src/main.o: ../src/main.c \
- C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\LEDMgr/LEDM.h \
- C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\WDGDrv/WDGDrv.h \
- C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\WDGM/WDGM.h \
- C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\Lib/Std_Types.h
-C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\LEDMgr/LEDM.h:
-C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\WDGDrv/WDGDrv.h:
-C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\WDGM/WDGM.h:
-C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\Lib/Std_Types.h:
+ E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\LEDMgr/LEDM.h \
+ E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\WDGDrv/WDGDrv.h \
+ E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\WDGM/WDGM.h \
+ E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\GPIO/GPIO.h
+E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\LEDMgr/LEDM.h:
+E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\WDGDrv/WDGDrv.h:
+E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\WDGM/WDGM.h:
+E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\GPIO/GPIO.h:

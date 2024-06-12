@@ -1,5 +1,3 @@
 WDGDrv/WDGDrv.o: ../WDGDrv/WDGDrv.c \
- C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\NVIC/NVIC.h \
- C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\Lib/Std_Types.h
-C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\NVIC/NVIC.h:
-C:\Users\Kareem\eclipse-workspace\Blinking_LED_with_Wathcdog\Lib/Std_Types.h:
+ E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\WDGM/WDGM.h
+E:\SBE\SBE\ 3rd\ Year\Second\ Semester\Embedded\ Systems\BlinkingLED_with_Watchdog\Project_Code\WDGM/WDGM.h:

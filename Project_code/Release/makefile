@@ -16,7 +16,6 @@ RM := rm -rf
 -include src/subdir.mk
 -include WDGM/subdir.mk
 -include WDGDrv/subdir.mk
--include RCC/subdir.mk
 -include NVIC/subdir.mk
 -include LEDMgr/subdir.mk
 -include GPIO/subdir.mk

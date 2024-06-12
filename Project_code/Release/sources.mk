@@ -38,7 +38,6 @@ SUBDIRS := \
 GPIO \
 LEDMgr \
 NVIC \
-RCC \
 WDGDrv \
 WDGM \
 src \
