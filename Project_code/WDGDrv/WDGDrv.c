@@ -6,7 +6,6 @@
  */
 
 #include <stdint.h>
-#include "NVIC.h"
 #include "WDGM.h"
 
 /*Base addresses for peripherals*/
@@ -43,55 +42,56 @@
 // Calculate the counter value based on the desired timeout and prescaler
 #define WWDG_COUNTER_VALUE (uint8_t)(((PCLK1_FREQ / 4096) * WWDG_TIMEOUT) / (2 * WWDG_PRESCALER))
 
-/*For enabling the interrrup (NVIC), page 203*/
+/*For enabling the interrupt (NVIC), page 203*/
 #define WWDG_IRQn 0 // from the datasheet, NVIC: page 203
+
+/*NVIC*/
+#define NVIC_ISER_BASE (0xE000E100)
+#define NVIC_ISER ((volatile uint32_t *)(NVIC_ISER_BASE))
 
 void WDGDrv_Init(void)
 {
     // Enable the clock for the WWDG
     RCC_APB1ENR |= (1 << RCC_APB1ENR_WWDGEN); // RCC: page 138
 
-    // We can combine the following in one line, but i splitted it to be easy to understand
+    // We can combine the following in one line, but I split it to be easy to understand
     WWDG_CFR |= (1 << WWDG_CFR_EWI);   // Enable "Early Wakeup Interrupt"
     WWDG_CFR |= (3 << WWDG_CFR_WDGTB); // Set prescaler to 8 (WDGTB = 3, (11) in binary)
-    WWDG_CFR |= (0x7F);                // Disable window by setting it to maximum vlaue
+    WWDG_CFR |= (0x7F);                // Disable window by setting it to maximum value
 
     // Enable/Activate the WWDG
     WWDG_CR = (WWDG_COUNTER_VALUE & WWDG_CR_T_Msk);
     WWDG_CR |= (1 << WWDG_CR_WDGA);
 
     // Enable the Early Wakeup Interrupt in the NVIC
-    Nvic_EnableInterrupt(WWDG_IRQn);
+    uint8_t regIndex = WWDG_IRQn / 32;    // determine which ISER will be used
+    uint8_t bitPosition = WWDG_IRQn % 32; // determine the bit to set
+    *(NVIC_ISER + regIndex) |= (1 << bitPosition);
+    // Nvic_EnableInterrupt(WWDG_IRQn);
 }
 
 void WDGDrv_IsrNotification(void)
 {
     WDGM_StatusType wdgmStatus = WDGM_PovideSuppervisionStatus();
 
-    // // Check if WDGM_MainFunction is not stuck and wdgmStatus is OK
-    // if (wdgmStatus == OK && WDGM_MainFunction())
-    // {
-    //     // Reload the WWDG counter
-    //     WWDG_CR = WWDG_COUNTER_VALUE & WWDG_CR_T_Msk;
-    // }
+    // Check if the WDGM status is OK
+    if (wdgmStatus == OK && (WWDG_SR & (1 << WWDG_SR_EWIF)))
+    {
+        // Reload the WWDG counter
+        WWDG_CR = (WWDG_COUNTER_VALUE & WWDG_CR_T_Msk) | (1 << WWDG_CR_WDGA);
+    }
 }
 
 /* WWDG interrupt handler */
 void WWDG_IRQHandler(void)
 {
-    // Clear the Early Wakeup Interrupt Flag
+    // Check if the Early Wakeup Interrupt flag is set
+    if (WWDG_SR & (1 << WWDG_SR_EWIF))
+    {
+        // Clear the Early Wakeup Interrupt Flag
+        WWDG_SR &= ~(1 << WWDG_SR_EWIF);
+
+        // Call the ISR Notification to potentially refresh the watchdog
+        WDGDrv_IsrNotification();
+    }
 }
-
-// Interrupt handler for WWDG
-// void WWDG_IRQHandler(void)
-// {
-//     // Check for early wakeup interrupt
-//     if (WWDG_SR & WWDG_CFR_EWI)
-//     {
-//         // Clear the early wakeup interrupt flag
-//         WWDG_SR &= ~(WWDG_CFR_EWI);
-
-//         // Reload the WWDG counter
-//         WWDG_CR = WWDG_CR_WDGA | WWDG_CR_T;
-//     }
-// }

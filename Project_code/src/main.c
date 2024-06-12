@@ -8,7 +8,9 @@
 #include "LEDM.h"
 #include "WDGDrv.h"
 #include "WDGM.h"
-#include "Std_Types.h"
+
+/*Standard Types*/
+typedef unsigned long uint32;
 
 void delay(uint32 time)
 {
@@ -26,9 +28,10 @@ int main()
 
     while (1)
     {
-        delay(10000);
         LEDM_Manage();
-        // WDGM_MainFunction();
+        delay(10000);
+        WDGM_MainFunction();
+        delay(10000);
     }
 
     return 0;
