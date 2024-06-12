@@ -6,6 +6,7 @@
  */
 
 #include <stdint.h>
+#include "NVIC.h"
 
 // Memory map addresses for RCC and WWDG peripherals
 #define RCC_BASE_ADDR 0x40023800

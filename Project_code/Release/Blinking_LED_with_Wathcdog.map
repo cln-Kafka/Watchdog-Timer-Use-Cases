@@ -1096,7 +1096,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x4869
+.debug_info     0x00000000     0x4865
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x9a3 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_info    0x000009a3      0xfc0 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -1113,13 +1113,13 @@ END GROUP
  .debug_info    0x00003ffc      0x139 ./src/main.o
  .debug_info    0x00004135       0xa3 ./src/stm32f4xx_hal_msp.o
  .debug_info    0x000041d8       0xca ./WDGM/WDGM.o
- .debug_info    0x000042a2       0xe0 ./WDGDrv/WDGDrv.o
- .debug_info    0x00004382      0x148 ./RCC/RCC.o
- .debug_info    0x000044ca      0x134 ./NVIC/NVIC.o
- .debug_info    0x000045fe      0x147 ./LEDMgr/LEDM.o
- .debug_info    0x00004745      0x124 ./GPIO/GPIO.o
+ .debug_info    0x000042a2       0xdc ./WDGDrv/WDGDrv.o
+ .debug_info    0x0000437e      0x148 ./RCC/RCC.o
+ .debug_info    0x000044c6      0x134 ./NVIC/NVIC.o
+ .debug_info    0x000045fa      0x147 ./LEDMgr/LEDM.o
+ .debug_info    0x00004741      0x124 ./GPIO/GPIO.o
 
-.debug_abbrev   0x00000000     0x17ef
+.debug_abbrev   0x00000000     0x17d5
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x299 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_abbrev  0x00000299      0x36f ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -1136,13 +1136,13 @@ END GROUP
  .debug_abbrev  0x000012cb       0xd1 ./src/main.o
  .debug_abbrev  0x0000139c       0x5e ./src/stm32f4xx_hal_msp.o
  .debug_abbrev  0x000013fa       0x91 ./WDGM/WDGM.o
- .debug_abbrev  0x0000148b       0xb6 ./WDGDrv/WDGDrv.o
- .debug_abbrev  0x00001541       0x8c ./RCC/RCC.o
- .debug_abbrev  0x000015cd       0x97 ./NVIC/NVIC.o
- .debug_abbrev  0x00001664       0xd3 ./LEDMgr/LEDM.o
- .debug_abbrev  0x00001737       0xb8 ./GPIO/GPIO.o
+ .debug_abbrev  0x0000148b       0x9c ./WDGDrv/WDGDrv.o
+ .debug_abbrev  0x00001527       0x8c ./RCC/RCC.o
+ .debug_abbrev  0x000015b3       0x97 ./NVIC/NVIC.o
+ .debug_abbrev  0x0000164a       0xd3 ./LEDMgr/LEDM.o
+ .debug_abbrev  0x0000171d       0xb8 ./GPIO/GPIO.o
 
-.debug_line     0x00000000     0x2f28
+.debug_line     0x00000000     0x2f74
  *(.debug_line)
  .debug_line    0x00000000      0x4f4 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_line    0x000004f4      0x732 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -1159,11 +1159,11 @@ END GROUP
  .debug_line    0x00002626      0x1f2 ./src/main.o
  .debug_line    0x00002818       0x4d ./src/stm32f4xx_hal_msp.o
  .debug_line    0x00002865       0xbd ./WDGM/WDGM.o
- .debug_line    0x00002922      0x130 ./WDGDrv/WDGDrv.o
- .debug_line    0x00002a52      0x114 ./RCC/RCC.o
- .debug_line    0x00002b66      0x12d ./NVIC/NVIC.o
- .debug_line    0x00002c93      0x13c ./LEDMgr/LEDM.o
- .debug_line    0x00002dcf      0x159 ./GPIO/GPIO.o
+ .debug_line    0x00002922      0x17c ./WDGDrv/WDGDrv.o
+ .debug_line    0x00002a9e      0x114 ./RCC/RCC.o
+ .debug_line    0x00002bb2      0x12d ./NVIC/NVIC.o
+ .debug_line    0x00002cdf      0x13c ./LEDMgr/LEDM.o
+ .debug_line    0x00002e1b      0x159 ./GPIO/GPIO.o
 
 .debug_frame    0x00000000      0x9f8
  *(.debug_frame)
@@ -1223,7 +1223,7 @@ END GROUP
  .debug_str     0x0000174a       0x89 ./WDGM/WDGM.o
                                 0x1b4 (size before relaxing)
  .debug_str     0x000017d3       0x4f ./WDGDrv/WDGDrv.o
-                                0x1ee (size before relaxing)
+                                0x1fb (size before relaxing)
  .debug_str     0x00001822       0x71 ./RCC/RCC.o
                                 0x202 (size before relaxing)
  .debug_str     0x00001893       0x3a ./NVIC/NVIC.o
