@@ -42,5 +42,5 @@ void LEDM_Manage(void)
 
     // Indicate aliveness to the watchdog manager (stub function for now)
     // Replace with appropriate watchdog management code if needed
-    WDGM_AlivenessIndication();
+//    WDGM_AlivenessIndication();
 }
