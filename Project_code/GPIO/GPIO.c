@@ -61,6 +61,11 @@ void GPIO_Init(void)
     GPIOA_PUPDR &= ~(0x03 << (PinNum * 2));
 }
 
+void GPIO_Write(unsigned char PinId, unsigned char PinData)
+{
+    GPIOA_ODR &= ~(0x01 << PinId);   // Reset bit
+    GPIOA_ODR |= (PinData << PinId); // Set bit
+}
 // void GPIO_Write(unsigned char PinId, unsigned char PinData)
 // {
 //     // Extract the mode of the pin
@@ -78,9 +83,3 @@ void GPIO_Init(void)
 //         }
 //     }
 // }
-
-void GPIO_Write(unsigned char PinId, unsigned char PinData)
-{
-    GPIOA_ODR &= ~(0x01 << PinId);   // Reset bit
-    GPIOA_ODR |= (PinData << PinId); // Set bit
-}
