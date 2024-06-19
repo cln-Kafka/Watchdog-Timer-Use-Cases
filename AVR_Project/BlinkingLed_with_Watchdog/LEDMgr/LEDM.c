@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include "LEDM.h"
 #include "gpio.h"
-
+#include "WDGM.h"
 /*LED Pin number*/
 #define LED_PIN PB0
 
@@ -42,5 +42,5 @@ void LEDM_Manage(void)
 
     // Indicate aliveness to the watchdog manager (stub function for now)
     // Replace with appropriate watchdog management code if needed
-//    WDGM_AlivenessIndication();
+    WDGM_AlivenessIndication();
 }

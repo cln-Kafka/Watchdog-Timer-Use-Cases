@@ -10,6 +10,8 @@ RM := rm -rf
 -include sources.mk
 -include src/subdir.mk
 -include gpio/subdir.mk
+-include WDGDrv/subdir.mk
+-include WDGDM/subdir.mk
 -include LEDMgr/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -46,6 +48,9 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 LSS += \
 BlinkingLed_with_Watchdog.lss \
 
+FLASH_IMAGE += \
+BlinkingLed_with_Watchdog.hex \
+
 SIZEDUMMY += \
 sizedummy \
 
@@ -70,18 +75,24 @@ BlinkingLed_with_Watchdog.lss: BlinkingLed_with_Watchdog.elf makefile objects.mk
 	@echo 'Finished building: $@'
 	@echo ' '
 
+BlinkingLed_with_Watchdog.hex: BlinkingLed_with_Watchdog.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+	@echo 'Create Flash image (ihex format)'
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex BlinkingLed_with_Watchdog.elf  "BlinkingLed_with_Watchdog.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 sizedummy: BlinkingLed_with_Watchdog.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=berkeley -t BlinkingLed_with_Watchdog.elf
+	-avr-size --format=avr --mcu=atmega328p BlinkingLed_with_Watchdog.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) BlinkingLed_with_Watchdog.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) BlinkingLed_with_Watchdog.elf
 	-@echo ' '
 
-secondary-outputs: $(LSS) $(SIZEDUMMY)
+secondary-outputs: $(LSS) $(FLASH_IMAGE) $(SIZEDUMMY)
 
 .PHONY: all clean dependents main-build
 
