@@ -18,7 +18,7 @@ static WDGM_StatusType wdgmStatus = OK;
 
 // Time elapsed since the last MainFunction Call
 static uint32 elapsedTime = 0;
-extern char called;
+extern char stuck_flag;
 
 void WDGM_Init(void)
 {
@@ -50,7 +50,7 @@ void WDGM_MainFunction(void)
         // Reset for next period
         ledM_Manage_CallCount = 0;
     }
-    called=1;
+    stuck_flag=0;
 }
 
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void)
