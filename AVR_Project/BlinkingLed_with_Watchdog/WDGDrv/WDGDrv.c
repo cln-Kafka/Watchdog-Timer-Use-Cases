@@ -2,6 +2,7 @@
 #include "WDGM.h"
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
+#include <util/delay.h>
 /*Standard Types*/
 typedef unsigned long uint32;
 
@@ -55,9 +56,9 @@ extern char stuck_flag;
 	 TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);
 	 /* Set the compare value which achieves 50 ms timer
 	  * compare value (no of pulses needed to reach the timeout) = (desired time/ time of one pulse) -1
-	  * time of one pulse= (2 * prescale)/ freq of the microcontroller clock
+	  * time of one pulse= ( prescale)/ freq of the clock
 	  * */
-	 OCR1A = 389;
+	 OCR1A = 760;
 	 // Enable timer1 output compare A match interrupt
 	 TIMSK1 = (1 << OCIE1A);
 	 /*enable global interrupts by setting pinI in the AVR status register to 1*/
@@ -73,7 +74,7 @@ extern char stuck_flag;
  void WDGDrv_IsrNotification(void){
 	 WDGM_StatusType wdgmStatus = WDGM_PovideSuppervisionStatus();
 	 // Check if the WDGM status is OK
-	 if (wdgmStatus == OK && (stuck_flag != 1))
+	 if ((wdgmStatus == OK) && (stuck_flag != 1))
 	  {
 		 //restart the timer
 		   wdt_reset();

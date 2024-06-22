@@ -2,6 +2,8 @@ Archive member included to satisfy reference by file (symbol)
 
 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
                               c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o (exit)
+c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                              ./src/main.o (__do_copy_data)
 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
                               ./src/main.o (__do_clear_bss)
 
@@ -132,7 +134,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x280
+.text           0x0000000000000000      0x1e4
  *(.vectors)
  .vectors       0x0000000000000000       0x68 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vector_default
@@ -173,8 +175,10 @@ END GROUP
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000000000000074       0x10 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
-                0x0000000000000074                __do_clear_bss
+ .init4         0x0000000000000074       0x16 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x0000000000000074                __do_copy_data
+ .init4         0x000000000000008a       0x10 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x000000000000008a                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -185,111 +189,125 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x0000000000000084        0x8 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
+ .init9         0x000000000000009a        0x8 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
  *(.init9)
  *(.text)
- .text          0x000000000000008c        0x4 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
-                0x000000000000008c                __vector_22
-                0x000000000000008c                __vector_1
-                0x000000000000008c                __vector_24
-                0x000000000000008c                __vector_12
-                0x000000000000008c                __bad_interrupt
-                0x000000000000008c                __vector_6
-                0x000000000000008c                __vector_3
-                0x000000000000008c                __vector_23
-                0x000000000000008c                __vector_25
-                0x000000000000008c                __vector_13
-                0x000000000000008c                __vector_17
-                0x000000000000008c                __vector_19
-                0x000000000000008c                __vector_7
-                0x000000000000008c                __vector_5
-                0x000000000000008c                __vector_4
-                0x000000000000008c                __vector_9
-                0x000000000000008c                __vector_2
-                0x000000000000008c                __vector_21
-                0x000000000000008c                __vector_15
-                0x000000000000008c                __vector_8
-                0x000000000000008c                __vector_14
-                0x000000000000008c                __vector_10
-                0x000000000000008c                __vector_16
-                0x000000000000008c                __vector_18
-                0x000000000000008c                __vector_20
- .text          0x0000000000000090        0x0 ./src/main.o
- .text          0x0000000000000090        0x0 ./gpio/gpio.o
- .text          0x0000000000000090        0x0 ./WDGDrv/WDGDrv.o
- .text          0x0000000000000090        0x0 ./WDGDM/WDGM.o
- .text          0x0000000000000090        0x0 ./LEDMgr/LEDM.o
- .text          0x0000000000000090        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
- .text          0x0000000000000090        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
-                0x0000000000000090                . = ALIGN (0x2)
+ .text          0x00000000000000a2        0x4 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
+                0x00000000000000a2                __vector_22
+                0x00000000000000a2                __vector_1
+                0x00000000000000a2                __vector_24
+                0x00000000000000a2                __vector_12
+                0x00000000000000a2                __bad_interrupt
+                0x00000000000000a2                __vector_6
+                0x00000000000000a2                __vector_3
+                0x00000000000000a2                __vector_23
+                0x00000000000000a2                __vector_25
+                0x00000000000000a2                __vector_13
+                0x00000000000000a2                __vector_17
+                0x00000000000000a2                __vector_19
+                0x00000000000000a2                __vector_7
+                0x00000000000000a2                __vector_5
+                0x00000000000000a2                __vector_4
+                0x00000000000000a2                __vector_9
+                0x00000000000000a2                __vector_2
+                0x00000000000000a2                __vector_21
+                0x00000000000000a2                __vector_15
+                0x00000000000000a2                __vector_8
+                0x00000000000000a2                __vector_14
+                0x00000000000000a2                __vector_10
+                0x00000000000000a2                __vector_16
+                0x00000000000000a2                __vector_18
+                0x00000000000000a2                __vector_20
+ .text          0x00000000000000a6        0x0 ./src/main.o
+ .text          0x00000000000000a6        0x0 ./gpio/gpio.o
+ .text          0x00000000000000a6        0x0 ./WDGDrv/WDGDrv.o
+ .text          0x00000000000000a6        0x0 ./WDGDM/WDGM.o
+ .text          0x00000000000000a6        0x0 ./LEDMgr/LEDM.o
+ .text          0x00000000000000a6        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .text          0x00000000000000a6        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000000000000a6        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000000a6                . = ALIGN (0x2)
  *(.text.*)
  .text.startup.main
-                0x0000000000000090       0x30 ./src/main.o
-                0x0000000000000090                main
+                0x00000000000000a6       0x3a ./src/main.o
+                0x00000000000000a6                main
  .text.GPIO_Init
-                0x00000000000000c0        0x4 ./gpio/gpio.o
-                0x00000000000000c0                GPIO_Init
+                0x00000000000000e0        0x4 ./gpio/gpio.o
+                0x00000000000000e0                GPIO_Init
  .text.GPIO_Write
-                0x00000000000000c4       0x24 ./gpio/gpio.o
-                0x00000000000000c4                GPIO_Write
+                0x00000000000000e4       0x24 ./gpio/gpio.o
+                0x00000000000000e4                GPIO_Write
  .text.WDGDrv_Init
-                0x00000000000000e8       0x40 ./WDGDrv/WDGDrv.o
-                0x00000000000000e8                WDGDrv_Init
+                0x0000000000000108       0x40 ./WDGDrv/WDGDrv.o
+                0x0000000000000108                WDGDrv_Init
  .text.WDGDrv_IsrNotification
-                0x0000000000000128       0x14 ./WDGDrv/WDGDrv.o
-                0x0000000000000128                WDGDrv_IsrNotification
+                0x0000000000000148       0x14 ./WDGDrv/WDGDrv.o
+                0x0000000000000148                WDGDrv_IsrNotification
  .text.__vector_11
-                0x000000000000013c       0x48 ./WDGDrv/WDGDrv.o
-                0x000000000000013c                __vector_11
+                0x000000000000015c       0x48 ./WDGDrv/WDGDrv.o
+                0x000000000000015c                __vector_11
  .text.WDGM_Init
-                0x0000000000000184        0xe ./WDGDM/WDGM.o
-                0x0000000000000184                WDGM_Init
+                0x00000000000001a4        0xe ./WDGDM/WDGM.o
+                0x00000000000001a4                WDGM_Init
  .text.WDGM_MainFunction
-                0x0000000000000192       0x68 ./WDGDM/WDGM.o
-                0x0000000000000192                WDGM_MainFunction
+                0x00000000000001b2        0x6 ./WDGDM/WDGM.o
+                0x00000000000001b2                WDGM_MainFunction
  .text.WDGM_PovideSuppervisionStatus
-                0x00000000000001fa        0x6 ./WDGDM/WDGM.o
-                0x00000000000001fa                WDGM_PovideSuppervisionStatus
+                0x00000000000001b8        0x6 ./WDGDM/WDGM.o
+                0x00000000000001b8                WDGM_PovideSuppervisionStatus
  .text.WDGM_AlivenessIndication
-                0x0000000000000200       0x14 ./WDGDM/WDGM.o
-                0x0000000000000200                WDGM_AlivenessIndication
+                0x00000000000001be       0x14 ./WDGDM/WDGM.o
+                0x00000000000001be                WDGM_AlivenessIndication
  .text.LEDM_Init
-                0x0000000000000214        0xe ./LEDMgr/LEDM.o
-                0x0000000000000214                LEDM_Init
+                0x00000000000001d2        0xc ./LEDMgr/LEDM.o
+                0x00000000000001d2                LEDM_Init
  .text.LEDM_Manage
-                0x0000000000000222       0x5a ./LEDMgr/LEDM.o
-                0x0000000000000222                LEDM_Manage
+                0x00000000000001de        0x2 ./LEDMgr/LEDM.o
+                0x00000000000001de                LEDM_Manage
  .text.libgcc.mul
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.div
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
-                0x000000000000027c                . = ALIGN (0x2)
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc.mul
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.div
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.prologue
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.builtins
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fmul
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc.fixed
+                0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000001e0                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000000000000027c        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
-                0x000000000000027c                _exit
-                0x000000000000027c                exit
+ .fini9         0x00000000000001e0        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000001e0                _exit
+                0x00000000000001e0                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -308,12 +326,12 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000000000000027c        0x4 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000000000001e0        0x4 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000000000000280                _etext = .
+                0x00000000000001e4                _etext = .
 
-.data           0x0000000000800100        0x0 load address 0x0000000000000280
-                [!provide]                        PROVIDE (__data_start, .)
+.data           0x0000000000800100        0x2 load address 0x00000000000001e4
+                0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
  .data          0x0000000000800100        0x0 ./src/main.o
@@ -322,50 +340,50 @@ END GROUP
  .data          0x0000000000800100        0x0 ./WDGDM/WDGM.o
  .data          0x0000000000800100        0x0 ./LEDMgr/LEDM.o
  .data          0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .data          0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .data          0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  *(.data*)
+ .data.called   0x0000000000800100        0x1 ./src/main.o
+                0x0000000000800100                called
  *(.gnu.linkonce.d*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.r*)
-                0x0000000000800100                . = ALIGN (0x2)
-                0x0000000000800100                _edata = .
-                [!provide]                        PROVIDE (__data_end, .)
+                0x0000000000800102                . = ALIGN (0x2)
+ *fill*         0x0000000000800101        0x1 
+                0x0000000000800102                _edata = .
+                0x0000000000800102                PROVIDE (__data_end, .)
 
-.bss            0x0000000000800100        0xd
-                0x0000000000800100                PROVIDE (__bss_start, .)
+.bss            0x0000000000800102        0x4
+                0x0000000000800102                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
- .bss           0x0000000000800100        0x0 ./src/main.o
- .bss           0x0000000000800100        0x0 ./gpio/gpio.o
- .bss           0x0000000000800100        0x0 ./WDGDrv/WDGDrv.o
- .bss           0x0000000000800100        0x0 ./WDGDM/WDGM.o
- .bss           0x0000000000800100        0x0 ./LEDMgr/LEDM.o
- .bss           0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
- .bss           0x0000000000800100        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x0000000000800102        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
+ .bss           0x0000000000800102        0x0 ./src/main.o
+ .bss           0x0000000000800102        0x0 ./gpio/gpio.o
+ .bss           0x0000000000800102        0x0 ./WDGDrv/WDGDrv.o
+ .bss           0x0000000000800102        0x0 ./WDGDM/WDGM.o
+ .bss           0x0000000000800102        0x0 ./LEDMgr/LEDM.o
+ .bss           0x0000000000800102        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .bss           0x0000000000800102        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+ .bss           0x0000000000800102        0x0 c:/users/dell/downloads/avr8-gnu-toolchain-3.7.0.1796-win32.any.x86_64/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  *(.bss*)
  .bss.stuck_flag
-                0x0000000000800100        0x1 ./src/main.o
-                0x0000000000800100                stuck_flag
- .bss.elapsedTime
-                0x0000000000800101        0x4 ./WDGDM/WDGM.o
+                0x0000000000800102        0x1 ./src/main.o
+                0x0000000000800102                stuck_flag
  .bss.wdgmStatus
-                0x0000000000800105        0x1 ./WDGDM/WDGM.o
+                0x0000000000800103        0x1 ./WDGDM/WDGM.o
  .bss.ledM_Manage_CallCount
-                0x0000000000800106        0x2 ./WDGDM/WDGM.o
- .bss.ledState  0x0000000000800108        0x1 ./LEDMgr/LEDM.o
- .bss.elapsedTime
-                0x0000000000800109        0x4 ./LEDMgr/LEDM.o
+                0x0000000000800104        0x2 ./WDGDM/WDGM.o
  *(COMMON)
-                0x000000000080010d                PROVIDE (__bss_end, .)
-                0x0000000000000280                __data_load_start = LOADADDR (.data)
-                0x0000000000000280                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x0000000000800106                PROVIDE (__bss_end, .)
+                0x00000000000001e4                __data_load_start = LOADADDR (.data)
+                0x00000000000001e6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x000000000080010d        0x0
+.noinit         0x0000000000800106        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x000000000080010d                _end = .
+                0x0000000000800106                _end = .
                 [!provide]                        PROVIDE (__heap_start, .)
 
 .eeprom         0x0000000000810000        0x0
