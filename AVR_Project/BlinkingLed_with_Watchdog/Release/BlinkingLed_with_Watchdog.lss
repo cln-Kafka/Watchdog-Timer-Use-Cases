@@ -3,23 +3,23 @@ BlinkingLed_with_Watchdog.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000002  00800100  000001e4  00000278  2**0
+  0 .data         00000002  00800100  00000228  000002bc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000001e4  00000000  00000000  00000094  2**1
+  1 .text         00000228  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000004  00800102  00800102  0000027a  2**0
+  2 .bss          00000005  00800102  00800102  000002be  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000027a  2**0
+  3 .comment      00000030  00000000  00000000  000002be  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002ac  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000002f0  2**2
                   CONTENTS, READONLY
-  5 .debug_info   000005f4  00000000  00000000  000002ec  2**0
+  5 .debug_info   000005f4  00000000  00000000  00000330  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000005a2  00000000  00000000  000008e0  2**0
+  6 .debug_abbrev 000005a2  00000000  00000000  00000924  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000001a  00000000  00000000  00000e82  2**0
+  7 .debug_line   0000001a  00000000  00000000  00000ec6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    00000208  00000000  00000000  00000e9c  2**0
+  8 .debug_str    00000208  00000000  00000000  00000ee0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -36,10 +36,10 @@ Disassembly of section .text:
   20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  2c:	0c 94 ae 00 	jmp	0x15c	; 0x15c <__vector_11>
+  2c:	0c 94 d0 00 	jmp	0x1a0	; 0x1a0 <__vector_11>
   30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 64 00 	jmp	0xc8	; 0xc8 <__vector_14>
   3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -64,8 +64,8 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	e4 ee       	ldi	r30, 0xE4	; 228
-  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7a:	e8 e2       	ldi	r30, 0x28	; 40
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
@@ -83,170 +83,204 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a6 30       	cpi	r26, 0x06	; 6
+  94:	a7 30       	cpi	r26, 0x07	; 7
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
-  9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
-  9e:	0c 94 f0 00 	jmp	0x1e0	; 0x1e0 <_exit>
+  9a:	0e 94 73 00 	call	0xe6	; 0xe6 <main>
+  9e:	0c 94 12 01 	jmp	0x224	; 0x224 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-000000a6 <main>:
-  a6:	0e 94 e9 00 	call	0x1d2	; 0x1d2 <LEDM_Init>
-  aa:	0e 94 84 00 	call	0x108	; 0x108 <WDGDrv_Init>
-  ae:	0e 94 d2 00 	call	0x1a4	; 0x1a4 <WDGM_Init>
-  b2:	c1 e0       	ldi	r28, 0x01	; 1
-  b4:	0e 94 ef 00 	call	0x1de	; 0x1de <LEDM_Manage>
-  b8:	83 ec       	ldi	r24, 0xC3	; 195
-  ba:	99 e0       	ldi	r25, 0x09	; 9
-  bc:	01 97       	sbiw	r24, 0x01	; 1
-  be:	f1 f7       	brne	.-4      	; 0xbc <main+0x16>
-  c0:	00 c0       	rjmp	.+0      	; 0xc2 <main+0x1c>
-  c2:	00 00       	nop
-  c4:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
-  c8:	81 30       	cpi	r24, 0x01	; 1
-  ca:	19 f4       	brne	.+6      	; 0xd2 <main+0x2c>
-  cc:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
-  d0:	f1 cf       	rjmp	.-30     	; 0xb4 <main+0xe>
-  d2:	c0 93 00 01 	sts	0x0100, r28	; 0x800100 <__DATA_REGION_ORIGIN__>
-  d6:	c0 93 02 01 	sts	0x0102, r28	; 0x800102 <__data_end>
-  da:	0e 94 d9 00 	call	0x1b2	; 0x1b2 <WDGM_MainFunction>
-  de:	ea cf       	rjmp	.-44     	; 0xb4 <main+0xe>
+000000a6 <Timer0_Init>:
+  a6:	84 b5       	in	r24, 0x24	; 36
+  a8:	82 60       	ori	r24, 0x02	; 2
+  aa:	84 bd       	out	0x24, r24	; 36
+  ac:	85 b5       	in	r24, 0x25	; 37
+  ae:	83 60       	ori	r24, 0x03	; 3
+  b0:	85 bd       	out	0x25, r24	; 37
+  b2:	89 ef       	ldi	r24, 0xF9	; 249
+  b4:	87 bd       	out	0x27, r24	; 39
+  b6:	ee e6       	ldi	r30, 0x6E	; 110
+  b8:	f0 e0       	ldi	r31, 0x00	; 0
+  ba:	80 81       	ld	r24, Z
+  bc:	82 60       	ori	r24, 0x02	; 2
+  be:	80 83       	st	Z, r24
+  c0:	8f b7       	in	r24, 0x3f	; 63
+  c2:	80 68       	ori	r24, 0x80	; 128
+  c4:	8f bf       	out	0x3f, r24	; 63
+  c6:	08 95       	ret
 
-000000e0 <GPIO_Init>:
-  e0:	20 9a       	sbi	0x04, 0	; 4
-  e2:	08 95       	ret
+000000c8 <__vector_14>:
+  c8:	1f 92       	push	r1
+  ca:	0f 92       	push	r0
+  cc:	0f b6       	in	r0, 0x3f	; 63
+  ce:	0f 92       	push	r0
+  d0:	11 24       	eor	r1, r1
+  d2:	8f 93       	push	r24
+  d4:	81 e0       	ldi	r24, 0x01	; 1
+  d6:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <timer_flag>
+  da:	8f 91       	pop	r24
+  dc:	0f 90       	pop	r0
+  de:	0f be       	out	0x3f, r0	; 63
+  e0:	0f 90       	pop	r0
+  e2:	1f 90       	pop	r1
+  e4:	18 95       	reti
 
-000000e4 <GPIO_Write>:
-  e4:	21 e0       	ldi	r18, 0x01	; 1
-  e6:	30 e0       	ldi	r19, 0x00	; 0
-  e8:	a9 01       	movw	r20, r18
-  ea:	02 c0       	rjmp	.+4      	; 0xf0 <GPIO_Write+0xc>
-  ec:	44 0f       	add	r20, r20
-  ee:	55 1f       	adc	r21, r21
-  f0:	8a 95       	dec	r24
-  f2:	e2 f7       	brpl	.-8      	; 0xec <GPIO_Write+0x8>
-  f4:	ca 01       	movw	r24, r20
-  f6:	95 b1       	in	r25, 0x05	; 5
-  f8:	61 30       	cpi	r22, 0x01	; 1
-  fa:	19 f4       	brne	.+6      	; 0x102 <GPIO_Write+0x1e>
-  fc:	89 2b       	or	r24, r25
-  fe:	85 b9       	out	0x05, r24	; 5
- 100:	08 95       	ret
- 102:	80 95       	com	r24
- 104:	89 23       	and	r24, r25
- 106:	fb cf       	rjmp	.-10     	; 0xfe <GPIO_Write+0x1a>
+000000e6 <main>:
+  e6:	0e 94 0b 01 	call	0x216	; 0x216 <LEDM_Init>
+  ea:	0e 94 a6 00 	call	0x14c	; 0x14c <WDGDrv_Init>
+  ee:	0e 94 f4 00 	call	0x1e8	; 0x1e8 <WDGM_Init>
+  f2:	0e 94 53 00 	call	0xa6	; 0xa6 <Timer0_Init>
+  f6:	c1 e0       	ldi	r28, 0x01	; 1
+  f8:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <timer_flag>
+  fc:	88 23       	and	r24, r24
+  fe:	e1 f3       	breq	.-8      	; 0xf8 <main+0x12>
+ 100:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <timer_flag>
+ 104:	0e 94 11 01 	call	0x222	; 0x222 <LEDM_Manage>
+ 108:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 10c:	81 30       	cpi	r24, 0x01	; 1
+ 10e:	19 f4       	brne	.+6      	; 0x116 <main+0x30>
+ 110:	10 92 00 01 	sts	0x0100, r1	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 114:	f1 cf       	rjmp	.-30     	; 0xf8 <main+0x12>
+ 116:	c0 93 00 01 	sts	0x0100, r28	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 11a:	c0 93 02 01 	sts	0x0102, r28	; 0x800102 <__data_end>
+ 11e:	0e 94 fb 00 	call	0x1f6	; 0x1f6 <WDGM_MainFunction>
+ 122:	ea cf       	rjmp	.-44     	; 0xf8 <main+0x12>
 
-00000108 <WDGDrv_Init>:
- 108:	8f b7       	in	r24, 0x3f	; 63
- 10a:	8f 77       	andi	r24, 0x7F	; 127
- 10c:	8f bf       	out	0x3f, r24	; 63
- 10e:	a8 95       	wdr
- 110:	84 b7       	in	r24, 0x34	; 52
- 112:	87 7f       	andi	r24, 0xF7	; 247
- 114:	84 bf       	out	0x34, r24	; 52
- 116:	e0 e6       	ldi	r30, 0x60	; 96
- 118:	f0 e0       	ldi	r31, 0x00	; 0
- 11a:	80 81       	ld	r24, Z
- 11c:	88 61       	ori	r24, 0x18	; 24
- 11e:	80 83       	st	Z, r24
- 120:	8a e0       	ldi	r24, 0x0A	; 10
- 122:	80 83       	st	Z, r24
- 124:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
- 128:	8b e0       	ldi	r24, 0x0B	; 11
- 12a:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
- 12e:	88 ef       	ldi	r24, 0xF8	; 248
- 130:	92 e0       	ldi	r25, 0x02	; 2
- 132:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
- 136:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
- 13a:	82 e0       	ldi	r24, 0x02	; 2
- 13c:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
- 140:	8f b7       	in	r24, 0x3f	; 63
- 142:	80 68       	ori	r24, 0x80	; 128
- 144:	8f bf       	out	0x3f, r24	; 63
- 146:	08 95       	ret
+00000124 <GPIO_Init>:
+ 124:	20 9a       	sbi	0x04, 0	; 4
+ 126:	08 95       	ret
 
-00000148 <WDGDrv_IsrNotification>:
- 148:	0e 94 dc 00 	call	0x1b8	; 0x1b8 <WDGM_PovideSuppervisionStatus>
- 14c:	81 11       	cpse	r24, r1
- 14e:	05 c0       	rjmp	.+10     	; 0x15a <WDGDrv_IsrNotification+0x12>
- 150:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
- 154:	81 30       	cpi	r24, 0x01	; 1
- 156:	09 f0       	breq	.+2      	; 0x15a <WDGDrv_IsrNotification+0x12>
- 158:	a8 95       	wdr
- 15a:	08 95       	ret
+00000128 <GPIO_Write>:
+ 128:	21 e0       	ldi	r18, 0x01	; 1
+ 12a:	30 e0       	ldi	r19, 0x00	; 0
+ 12c:	a9 01       	movw	r20, r18
+ 12e:	02 c0       	rjmp	.+4      	; 0x134 <GPIO_Write+0xc>
+ 130:	44 0f       	add	r20, r20
+ 132:	55 1f       	adc	r21, r21
+ 134:	8a 95       	dec	r24
+ 136:	e2 f7       	brpl	.-8      	; 0x130 <GPIO_Write+0x8>
+ 138:	ca 01       	movw	r24, r20
+ 13a:	95 b1       	in	r25, 0x05	; 5
+ 13c:	61 30       	cpi	r22, 0x01	; 1
+ 13e:	19 f4       	brne	.+6      	; 0x146 <GPIO_Write+0x1e>
+ 140:	89 2b       	or	r24, r25
+ 142:	85 b9       	out	0x05, r24	; 5
+ 144:	08 95       	ret
+ 146:	80 95       	com	r24
+ 148:	89 23       	and	r24, r25
+ 14a:	fb cf       	rjmp	.-10     	; 0x142 <GPIO_Write+0x1a>
 
-0000015c <__vector_11>:
- 15c:	1f 92       	push	r1
- 15e:	0f 92       	push	r0
- 160:	0f b6       	in	r0, 0x3f	; 63
- 162:	0f 92       	push	r0
- 164:	11 24       	eor	r1, r1
- 166:	2f 93       	push	r18
- 168:	3f 93       	push	r19
- 16a:	4f 93       	push	r20
- 16c:	5f 93       	push	r21
- 16e:	6f 93       	push	r22
- 170:	7f 93       	push	r23
- 172:	8f 93       	push	r24
- 174:	9f 93       	push	r25
- 176:	af 93       	push	r26
- 178:	bf 93       	push	r27
- 17a:	ef 93       	push	r30
- 17c:	ff 93       	push	r31
- 17e:	0e 94 a4 00 	call	0x148	; 0x148 <WDGDrv_IsrNotification>
- 182:	ff 91       	pop	r31
- 184:	ef 91       	pop	r30
- 186:	bf 91       	pop	r27
- 188:	af 91       	pop	r26
- 18a:	9f 91       	pop	r25
- 18c:	8f 91       	pop	r24
- 18e:	7f 91       	pop	r23
- 190:	6f 91       	pop	r22
- 192:	5f 91       	pop	r21
- 194:	4f 91       	pop	r20
- 196:	3f 91       	pop	r19
- 198:	2f 91       	pop	r18
- 19a:	0f 90       	pop	r0
- 19c:	0f be       	out	0x3f, r0	; 63
- 19e:	0f 90       	pop	r0
- 1a0:	1f 90       	pop	r1
- 1a2:	18 95       	reti
+0000014c <WDGDrv_Init>:
+ 14c:	8f b7       	in	r24, 0x3f	; 63
+ 14e:	8f 77       	andi	r24, 0x7F	; 127
+ 150:	8f bf       	out	0x3f, r24	; 63
+ 152:	a8 95       	wdr
+ 154:	84 b7       	in	r24, 0x34	; 52
+ 156:	87 7f       	andi	r24, 0xF7	; 247
+ 158:	84 bf       	out	0x34, r24	; 52
+ 15a:	e0 e6       	ldi	r30, 0x60	; 96
+ 15c:	f0 e0       	ldi	r31, 0x00	; 0
+ 15e:	80 81       	ld	r24, Z
+ 160:	88 61       	ori	r24, 0x18	; 24
+ 162:	80 83       	st	Z, r24
+ 164:	8a e0       	ldi	r24, 0x0A	; 10
+ 166:	80 83       	st	Z, r24
+ 168:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+ 16c:	8b e0       	ldi	r24, 0x0B	; 11
+ 16e:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+ 172:	88 ef       	ldi	r24, 0xF8	; 248
+ 174:	92 e0       	ldi	r25, 0x02	; 2
+ 176:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 17a:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 17e:	82 e0       	ldi	r24, 0x02	; 2
+ 180:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
+ 184:	8f b7       	in	r24, 0x3f	; 63
+ 186:	80 68       	ori	r24, 0x80	; 128
+ 188:	8f bf       	out	0x3f, r24	; 63
+ 18a:	08 95       	ret
 
-000001a4 <WDGM_Init>:
- 1a4:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <ledM_Manage_CallCount+0x1>
- 1a8:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <ledM_Manage_CallCount>
- 1ac:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <wdgmStatus>
- 1b0:	08 95       	ret
+0000018c <WDGDrv_IsrNotification>:
+ 18c:	0e 94 fe 00 	call	0x1fc	; 0x1fc <WDGM_PovideSuppervisionStatus>
+ 190:	81 11       	cpse	r24, r1
+ 192:	05 c0       	rjmp	.+10     	; 0x19e <WDGDrv_IsrNotification+0x12>
+ 194:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <__data_end>
+ 198:	81 30       	cpi	r24, 0x01	; 1
+ 19a:	09 f0       	breq	.+2      	; 0x19e <WDGDrv_IsrNotification+0x12>
+ 19c:	a8 95       	wdr
+ 19e:	08 95       	ret
 
-000001b2 <WDGM_MainFunction>:
- 1b2:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <__data_end>
- 1b6:	08 95       	ret
+000001a0 <__vector_11>:
+ 1a0:	1f 92       	push	r1
+ 1a2:	0f 92       	push	r0
+ 1a4:	0f b6       	in	r0, 0x3f	; 63
+ 1a6:	0f 92       	push	r0
+ 1a8:	11 24       	eor	r1, r1
+ 1aa:	2f 93       	push	r18
+ 1ac:	3f 93       	push	r19
+ 1ae:	4f 93       	push	r20
+ 1b0:	5f 93       	push	r21
+ 1b2:	6f 93       	push	r22
+ 1b4:	7f 93       	push	r23
+ 1b6:	8f 93       	push	r24
+ 1b8:	9f 93       	push	r25
+ 1ba:	af 93       	push	r26
+ 1bc:	bf 93       	push	r27
+ 1be:	ef 93       	push	r30
+ 1c0:	ff 93       	push	r31
+ 1c2:	0e 94 c6 00 	call	0x18c	; 0x18c <WDGDrv_IsrNotification>
+ 1c6:	ff 91       	pop	r31
+ 1c8:	ef 91       	pop	r30
+ 1ca:	bf 91       	pop	r27
+ 1cc:	af 91       	pop	r26
+ 1ce:	9f 91       	pop	r25
+ 1d0:	8f 91       	pop	r24
+ 1d2:	7f 91       	pop	r23
+ 1d4:	6f 91       	pop	r22
+ 1d6:	5f 91       	pop	r21
+ 1d8:	4f 91       	pop	r20
+ 1da:	3f 91       	pop	r19
+ 1dc:	2f 91       	pop	r18
+ 1de:	0f 90       	pop	r0
+ 1e0:	0f be       	out	0x3f, r0	; 63
+ 1e2:	0f 90       	pop	r0
+ 1e4:	1f 90       	pop	r1
+ 1e6:	18 95       	reti
 
-000001b8 <WDGM_PovideSuppervisionStatus>:
- 1b8:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <wdgmStatus>
- 1bc:	08 95       	ret
+000001e8 <WDGM_Init>:
+ 1e8:	10 92 06 01 	sts	0x0106, r1	; 0x800106 <ledM_Manage_CallCount+0x1>
+ 1ec:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <ledM_Manage_CallCount>
+ 1f0:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <wdgmStatus>
+ 1f4:	08 95       	ret
 
-000001be <WDGM_AlivenessIndication>:
- 1be:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <ledM_Manage_CallCount>
- 1c2:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <ledM_Manage_CallCount+0x1>
- 1c6:	01 96       	adiw	r24, 0x01	; 1
- 1c8:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <ledM_Manage_CallCount+0x1>
- 1cc:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <ledM_Manage_CallCount>
- 1d0:	08 95       	ret
+000001f6 <WDGM_MainFunction>:
+ 1f6:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <__data_end>
+ 1fa:	08 95       	ret
 
-000001d2 <LEDM_Init>:
- 1d2:	0e 94 70 00 	call	0xe0	; 0xe0 <GPIO_Init>
- 1d6:	60 e0       	ldi	r22, 0x00	; 0
- 1d8:	80 e0       	ldi	r24, 0x00	; 0
- 1da:	0c 94 72 00 	jmp	0xe4	; 0xe4 <GPIO_Write>
+000001fc <WDGM_PovideSuppervisionStatus>:
+ 1fc:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <wdgmStatus>
+ 200:	08 95       	ret
 
-000001de <LEDM_Manage>:
- 1de:	08 95       	ret
+00000202 <WDGM_AlivenessIndication>:
+ 202:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <ledM_Manage_CallCount>
+ 206:	90 91 06 01 	lds	r25, 0x0106	; 0x800106 <ledM_Manage_CallCount+0x1>
+ 20a:	01 96       	adiw	r24, 0x01	; 1
+ 20c:	90 93 06 01 	sts	0x0106, r25	; 0x800106 <ledM_Manage_CallCount+0x1>
+ 210:	80 93 05 01 	sts	0x0105, r24	; 0x800105 <ledM_Manage_CallCount>
+ 214:	08 95       	ret
 
-000001e0 <_exit>:
- 1e0:	f8 94       	cli
+00000216 <LEDM_Init>:
+ 216:	0e 94 92 00 	call	0x124	; 0x124 <GPIO_Init>
+ 21a:	61 e0       	ldi	r22, 0x01	; 1
+ 21c:	80 e0       	ldi	r24, 0x00	; 0
+ 21e:	0c 94 94 00 	jmp	0x128	; 0x128 <GPIO_Write>
 
-000001e2 <__stop_program>:
- 1e2:	ff cf       	rjmp	.-2      	; 0x1e2 <__stop_program>
+00000222 <LEDM_Manage>:
+ 222:	08 95       	ret
+
+00000224 <_exit>:
+ 224:	f8 94       	cli
+
+00000226 <__stop_program>:
+ 226:	ff cf       	rjmp	.-2      	; 0x226 <__stop_program>

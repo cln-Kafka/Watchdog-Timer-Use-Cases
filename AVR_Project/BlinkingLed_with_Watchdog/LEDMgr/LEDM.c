@@ -9,14 +9,14 @@
 #include "LEDM.h"
 #include "gpio.h"
 #include "WDGM.h"
+
 /*LED Pin number*/
 #define LED_PIN PB0
 
 #define LED_ON 1
 #define LED_OFF 0
 
-
-static uint8_t ledState = LED_OFF;
+static uint8_t ledState = LED_ON;
 
 void LEDM_Init(void)
 {
@@ -25,7 +25,9 @@ void LEDM_Init(void)
 }
 
 void LEDM_Manage(void)
-{ uint32_t elapsedTime = 0;
+{
+    uint32_t elapsedTime = 0;
+    
     // Increment elapsed time by 10ms
     elapsedTime += 10;
 
@@ -40,7 +42,6 @@ void LEDM_Manage(void)
         elapsedTime = 0;
     }
 
-    // Indicate aliveness to the watchdog manager (stub function for now)
-    // Replace with appropriate watchdog management code if needed
-//    WDGM_AlivenessIndication();
+    // Indicate aliveness to the watchdog manager
+    // WDGM_AlivenessIndication();
 }

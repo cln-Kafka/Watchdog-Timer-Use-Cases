@@ -26,8 +26,9 @@ void WDGM_Init(void)
 }
 
 void WDGM_MainFunction(void)
-{// Time elapsed since the last MainFunction Call
-	 uint32 elapsedTime = 0;
+{ // Time elapsed since the last MainFunction Call
+    uint32 elapsedTime = 0;
+
     // Increment elapsed time by 10ms
     elapsedTime += 20;
 
@@ -49,7 +50,7 @@ void WDGM_MainFunction(void)
         // Reset for next period
         ledM_Manage_CallCount = 0;
     }
-    stuck_flag=0;
+    stuck_flag = 0;
 }
 
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void)
@@ -61,4 +62,3 @@ void WDGM_AlivenessIndication(void)
 {
     ledM_Manage_CallCount++;
 }
-
