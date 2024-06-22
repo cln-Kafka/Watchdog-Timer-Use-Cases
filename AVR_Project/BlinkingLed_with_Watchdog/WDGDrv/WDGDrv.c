@@ -54,10 +54,10 @@ extern char stuck_flag;
 	  * 64ms prescale*/
 	 TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);
 	 /* Set the compare value which achieves 50 ms timer
-	  * compare value (no of pulses needed to reach the timeout) = desired time/ time of one pulse
-	  * time of one pulse= prescale/ freq of the microcontroller clock
+	  * compare value (no of pulses needed to reach the timeout) = (desired time/ time of one pulse) -1
+	  * time of one pulse= (2 * prescale)/ freq of the microcontroller clock
 	  * */
-	 OCR1A = 780;
+	 OCR1A = 389;
 	 // Enable timer1 output compare A match interrupt
 	 TIMSK1 = (1 << OCIE1A);
 	 /*enable global interrupts by setting pinI in the AVR status register to 1*/
