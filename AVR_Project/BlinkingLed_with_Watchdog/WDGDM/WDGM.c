@@ -15,19 +15,21 @@ typedef unsigned long uint32;
 static unsigned int ledM_Manage_CallCount = 0;
 
 static WDGM_StatusType wdgmStatus = OK;
+// Time elapsed since the last MainFunction Call
+static uint32 elapsedTime = 0;
 
 extern char stuck_flag;
 
 void WDGM_Init(void)
 {
     // Initialize internal variables
+	elapsedTime = 0;
     ledM_Manage_CallCount = 0;
     wdgmStatus = OK;
 }
 
 void WDGM_MainFunction(void)
-{ // Time elapsed since the last MainFunction Call
-    uint32 elapsedTime = 0;
+{
 
     // Increment elapsed time by 10ms
     elapsedTime += 20;

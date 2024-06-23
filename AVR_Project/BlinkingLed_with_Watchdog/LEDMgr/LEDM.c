@@ -17,6 +17,7 @@
 #define LED_OFF 0
 
 static uint8_t ledState = LED_ON;
+static uint32_t elapsedTime = 0;
 
 void LEDM_Init(void)
 {
@@ -26,7 +27,6 @@ void LEDM_Init(void)
 
 void LEDM_Manage(void)
 {
-    uint32_t elapsedTime = 0;
     
     // Increment elapsed time by 10ms
     elapsedTime += 10;
@@ -43,5 +43,5 @@ void LEDM_Manage(void)
     }
 
     // Indicate aliveness to the watchdog manager
-    // WDGM_AlivenessIndication();
+     WDGM_AlivenessIndication();
 }

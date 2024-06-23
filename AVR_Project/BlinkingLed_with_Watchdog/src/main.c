@@ -1,116 +1,82 @@
-// /**
-//  * main.c
-//  *
-//  *  Created on  :   Tuesday 18 JUN 2024
-//  *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr, Nouran Mahmoud
-//  */
-
-// #include <avr/io.h>
-// #include <util/delay.h>
-
-// #include "LEDM.h"
-// #include "WDGDrv.h"
-// #include "WDGM.h"
-// #include "GPIO.h"
-
-// char stuck_flag = 0;
-// char called = 1;
-
-// int main()
-// {
-//   LEDM_Init();
-//   WDGDrv_Init();
-//   WDGM_Init();
-
-//   while (1)
-//   {
-//     LEDM_Manage();
-//     _delay_ms(10);
-//     if (called == 1)
-//     {
-//       called = 0;
-//       continue;
-//     }
-//     else
-//     {
-//       called = 1;
-//       stuck_flag = 1;
-//       WDGM_MainFunction();
-//     }
-//   }
-
-//   return 0;
-// }
-
 /**
  * main.c
  *
- *  Created on  :   Sun 09 JUN 2024
+ *  Created on  :   Tuesday 18 JUN 2024
  *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr, Nouran Mahmoud
  */
+
 #include <avr/io.h>
-#include <avr/interrupt.h> // Include the interrupt library
+#include <avr/interrupt.h>
 
 #include "LEDM.h"
 #include "WDGDrv.h"
 #include "WDGM.h"
 #include "GPIO.h"
 
-volatile char timer_flag = 0;
+volatile  unsigned long time = 0; // `volatile` to ensure the variable is updated properly in the ISR
 char stuck_flag = 0;
 char called = 1;
 
-// Timer0 initialization function
-void Timer0_Init()
+void Timer0_Init(void)
 {
-  // Set timer to CTC mode
-  TCCR0A |= (1 << WGM01);
+    // Set Timer0 to CTC mode (WGM01 = 1, WGM00 = 0)
+    TCCR0A = (1 << WGM01);
 
-  // Set prescaler to 64
-  TCCR0B |= (1 << CS01) | (1 << CS00);
+    // Set compare value for 1ms interrupt
+    // Assuming 16 MHz clock with prescaler 64: (16*10^6 / (64 * (249 + 1))) = 1 kHz (1ms)
+    OCR0A = 15;
 
-  // Set CTC compare value for 10ms at 16MHz AVR clock, with prescaler of 64
-  OCR0A = 249;
+    // Enable Timer0 Compare Match A interrupt
+    TIMSK0 = (1 << OCIE0A);
 
-  // Enable compare match interrupt
-  TIMSK0 |= (1 << OCIE0A);
-
-  // Enable global interrupts by setting the I-bit in SREG
-  SREG |= (1 << 7);
+    // Set prescaler to 64 and start Timer0 (CS01 and CS00 bits set)
+    TCCR0B = (1 << CS01) | (1 << CS00);
 }
 
-// Timer0 compare match interrupt service routine
+// ISR for Timer0 Compare Match A
 ISR(TIMER0_COMPA_vect)
 {
-  timer_flag = 1; // Set the flag when the timer interrupt occurs
+    time++; // Increment the time variable every 1ms
 }
+
 
 int main()
 {
-  LEDM_Init();
-  WDGDrv_Init();
-  WDGM_Init();
-  Timer0_Init(); // Initialize Timer0
+    // Initialize peripherals
+    LEDM_Init();
+    WDGDrv_Init();
+    WDGM_Init();
 
-  while (1)
-  {
-    if (timer_flag)
+    // Initialize Timer0
+    Timer0_Init();
+
+    // Enable global interrupts by setting the I-bit in SREG
+    SREG |= (1 << 7);
+
+    unsigned long lastTime = 0;
+
+    while (1)
     {
-      timer_flag = 0; // Clear the flag
-      LEDM_Manage();
+        // Check if 10ms have elapsed
+        if ((time - lastTime) >= 10)
+        {
+            lastTime = time;
 
-      if (called == 1)
-      {
-        called = 0;
-        continue;
-      }
-      else
-      {
-        called = 1;
-        stuck_flag = 1;
-        WDGM_MainFunction();
-      }
+            LEDM_Manage();
+
+            if (called == 1)
+            {
+                called = 0;
+                continue;
+            }
+            else
+            {
+                called = 1;
+                stuck_flag = 1;
+                WDGM_MainFunction();
+            }
+        }
     }
-  }
-  return 0;
+
+    return 0;
 }
