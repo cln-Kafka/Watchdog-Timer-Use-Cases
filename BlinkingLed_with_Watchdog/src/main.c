@@ -17,12 +17,20 @@
 #define PIN_I 	7
 
 /*Global Variables*/
-char is_WDGM_MainFunction_called = 1;   // Flag to indicate whether the WDGM_MainFunction was called
-char stuck_flag = 0;                    // Flag to indicate whether the WDGM_MainFunction is stuck
-volatile unsigned long time = 0;        // Time variable to count the number of milliseconds
+char is_WDGM_MainFunction_called = 1;           // Flag to indicate whether the WDGM_MainFunction was called
+char stuck_flag = 0;                            // Flag to indicate whether the WDGM_MainFunction is stuck
+volatile unsigned long time = 0;                // Time variable to count the number of milliseconds
+unsigned long LEDM_Manage_time = 10;
 
 /*Timer0 Variables*/
-#define TIMER0_OUTPUT_COMPARE_A    15          // Compare value for 1ms timer
+#define TIMER0_OUTPUT_COMPARE_A    15           // Compare value for 1ms timer
+
+/* Define intervals for function calls in milliseconds */
+#define LEDM_INTERVAL     10                    // Interval for calling LEDM_Manage
+#define WDGM_INTERVAL     20                    // Interval for calling WDGM_MainFunction
+
+unsigned long ledm_lastTime = 0;                // Time marker for the last LEDM_Manage call
+unsigned long wdgm_lastTime = 0;                // Time marker for the last WDGM_MainFunction call
 
 void Timer0_Init(void)
 {
@@ -58,43 +66,27 @@ int main()
     // Enable global interrupts by setting the I-bit in SREG
     SREG |= (1 << PIN_I);
 
-    unsigned long lastTime = 0;
-
     while (1)
     {
-        // Check if 10ms have elapsed
-        if ((time - lastTime) >= 10)
-        {   
+        // Check if it's time to call LEDM_Manage
+        if ((time - ledm_lastTime) >= LEDM_INTERVAL)
+        {
             // Update the last time to the current time
-            // So that the second time, the check will be after (20ms - 10ms = 10ms)
-            lastTime = time;
+            ledm_lastTime = time;
 
-            // Call the LED Manager to toggle the LED state if 500ms have passed
-            // Also, to track the number of calls
+            // Call the LED Manager
             LEDM_Manage();
+        }
 
-            // Check whether to call the WDGM_MainFunction or not
-            if (is_WDGM_MainFunction_called == 1)
-            {   
-                // If it won't be called now, reset the flag to call it the next iteration
-                // That way 20ms will pass between each call
-                is_WDGM_MainFunction_called = 0;
+        // Check if it's time to call WDGM_MainFunction
+        if ((time - wdgm_lastTime) >= WDGM_INTERVAL)
+        {
+            // Update the last time to the current time
+            wdgm_lastTime = time;
 
-                continue;
-            }
-            else
-            {   
-                // If it will be called now, set the flag to indicate that it was called
-                // So that it won't be called the next iteration
-                is_WDGM_MainFunction_called = 1;
-                
-                // Reset the stuck flag to indicate that the WDGM_MainFunction is stuck
-                // If the function is not stuck, it will be set to 0 in the WDGM_MainFunction
-                stuck_flag = 1;
-
-                // Call the WDGM_MainFunction to check the LEDM_Manage call count if 100ms have passed
-                WDGM_MainFunction();
-            }
+            // Call the WDGM_MainFunction
+            stuck_flag = 1;
+            WDGM_MainFunction();
         }
     }
 
