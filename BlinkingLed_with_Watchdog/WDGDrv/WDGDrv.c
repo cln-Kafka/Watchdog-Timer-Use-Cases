@@ -2,7 +2,7 @@
  * WDGDrv.c
  *
  *  Created on  :   Sun 09 JUN 2024
- *  Authors     :   Nada Amr, Kareem Salah, Mohamed Samy, Nouran Mahmoud
+ *  Authors     :   Nada Amr, Kareem Salah, Mohamed Samy 
  */
 
 #include "WDGDrv.h"

@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on  :   Tuesday 18 JUN 2024
- *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr, Nouran Mahmoud
+ *  Authors     :   Kareem Salah, Mohamed Samy, Nada Amr 
  */
 
 #include <avr/io.h>

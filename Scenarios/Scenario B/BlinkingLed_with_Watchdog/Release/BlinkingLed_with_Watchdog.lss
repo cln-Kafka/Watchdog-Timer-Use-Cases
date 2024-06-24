@@ -1,0 +1,715 @@
+
+BlinkingLed_with_Watchdog.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000006  00800100  000003e4  00000478  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000003e4  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000018  00800106  00800106  0000047e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000047e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000004b0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f0  00000000  00000000  000004f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000c21  00000000  00000000  000005e0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000094b  00000000  00000000  00001201  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000f92  00000000  00000000  00001b4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001d0  00000000  00000000  00002ae0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00007778  00000000  00000000  00002cb0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000001ab  00000000  00000000  0000a428  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a0  00000000  00000000  0000a5d3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_macro  00002db9  00000000  00000000  0000a673  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 40 01 	jmp	0x280	; 0x280 <__vector_11>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 71 00 	jmp	0xe2	; 0xe2 <__vector_14>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e4 ee       	ldi	r30, 0xE4	; 228
+  7c:	f3 e0       	ldi	r31, 0x03	; 3
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a6 30       	cpi	r26, 0x06	; 6
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	a6 e0       	ldi	r26, 0x06	; 6
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ae 31       	cpi	r26, 0x1E	; 30
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 96 00 	call	0x12c	; 0x12c <main>
+  9e:	0c 94 f0 01 	jmp	0x3e0	; 0x3e0 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <__vector_reset>:
+void Timer0_Init(void);
+void __vector_reset(void) __attribute__ ((signal, used, externally_visible));
+
+/* Vector Reset Function */
+void __vector_reset(void)
+{
+  a6:	1f 92       	push	r1
+  a8:	0f 92       	push	r0
+  aa:	0f b6       	in	r0, 0x3f	; 63
+  ac:	0f 92       	push	r0
+  ae:	11 24       	eor	r1, r1
+  b0:	8f 93       	push	r24
+  b2:	9f 93       	push	r25
+    DDRB |= (1 << TEST_PIN_MCU_Reset);  // Set as output
+  b4:	21 9a       	sbi	0x04, 1	; 4
+    PORTB ^= (1 << TEST_PIN_MCU_Reset); // Toggle
+  b6:	85 b1       	in	r24, 0x05	; 5
+  b8:	92 e0       	ldi	r25, 0x02	; 2
+  ba:	89 27       	eor	r24, r25
+  bc:	85 b9       	out	0x05, r24	; 5
+    asm("jmp 0");  // Jump to the actual reset vector
+  be:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+}
+  c2:	9f 91       	pop	r25
+  c4:	8f 91       	pop	r24
+  c6:	0f 90       	pop	r0
+  c8:	0f be       	out	0x3f, r0	; 63
+  ca:	0f 90       	pop	r0
+  cc:	1f 90       	pop	r1
+  ce:	18 95       	reti
+
+000000d0 <Timer0_Init>:
+
+/* Timer0 Initialization */
+void Timer0_Init(void)
+{
+    // Set Timer0 to CTC mode (WGM01 = 1, WGM00 = 0)
+    TCCR0A = (1 << WGM01);
+  d0:	82 e0       	ldi	r24, 0x02	; 2
+  d2:	84 bd       	out	0x24, r24	; 36
+
+    // Set compare value for 1ms interrupt
+    // the clock frequency is 1MHz, the prescaler is 64, the timer is 8-bit
+    OCR0A = TIMER0_OUTPUT_COMPARE_A;
+  d4:	9f e0       	ldi	r25, 0x0F	; 15
+  d6:	97 bd       	out	0x27, r25	; 39
+
+    // Enable Timer0 Compare Match A interrupt
+    TIMSK0 = (1 << OCIE0A);
+  d8:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+
+    // Set prescaler to 64 and start Timer0 (CS01 and CS00 bits set)
+    TCCR0B = (1 << CS01) | (1 << CS00);
+  dc:	83 e0       	ldi	r24, 0x03	; 3
+  de:	85 bd       	out	0x25, r24	; 37
+}
+  e0:	08 95       	ret
+
+000000e2 <__vector_14>:
+
+// ISR for Timer0 Compare Match A
+ISR(TIMER0_COMPA_vect)
+{
+  e2:	1f 92       	push	r1
+  e4:	0f 92       	push	r0
+  e6:	0f b6       	in	r0, 0x3f	; 63
+  e8:	0f 92       	push	r0
+  ea:	11 24       	eor	r1, r1
+  ec:	8f 93       	push	r24
+  ee:	9f 93       	push	r25
+  f0:	af 93       	push	r26
+  f2:	bf 93       	push	r27
+    // Increment the time variable every 1ms
+    time++;
+  f4:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <time>
+  f8:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <time+0x1>
+  fc:	a0 91 10 01 	lds	r26, 0x0110	; 0x800110 <time+0x2>
+ 100:	b0 91 11 01 	lds	r27, 0x0111	; 0x800111 <time+0x3>
+ 104:	01 96       	adiw	r24, 0x01	; 1
+ 106:	a1 1d       	adc	r26, r1
+ 108:	b1 1d       	adc	r27, r1
+ 10a:	80 93 0e 01 	sts	0x010E, r24	; 0x80010e <time>
+ 10e:	90 93 0f 01 	sts	0x010F, r25	; 0x80010f <time+0x1>
+ 112:	a0 93 10 01 	sts	0x0110, r26	; 0x800110 <time+0x2>
+ 116:	b0 93 11 01 	sts	0x0111, r27	; 0x800111 <time+0x3>
+}
+ 11a:	bf 91       	pop	r27
+ 11c:	af 91       	pop	r26
+ 11e:	9f 91       	pop	r25
+ 120:	8f 91       	pop	r24
+ 122:	0f 90       	pop	r0
+ 124:	0f be       	out	0x3f, r0	; 63
+ 126:	0f 90       	pop	r0
+ 128:	1f 90       	pop	r1
+ 12a:	18 95       	reti
+
+0000012c <main>:
+
+int main()
+{
+    // Initialize peripherals
+    LEDM_Init();                // LED Manager
+ 12c:	0e 94 b8 01 	call	0x370	; 0x370 <LEDM_Init>
+    WDGDrv_Init();              // Watchdog Driver
+ 130:	0e 94 12 01 	call	0x224	; 0x224 <WDGDrv_Init>
+    WDGM_Init();                // Watchdog Manager
+ 134:	0e 94 64 01 	call	0x2c8	; 0x2c8 <WDGM_Init>
+    Timer0_Init();              // Timer0
+ 138:	0e 94 68 00 	call	0xd0	; 0xd0 <Timer0_Init>
+
+    // Enable global interrupts by setting the I-bit in SREG
+    SREG |= (1 << PIN_I);
+ 13c:	8f b7       	in	r24, 0x3f	; 63
+ 13e:	80 68       	ori	r24, 0x80	; 128
+ 140:	8f bf       	out	0x3f, r24	; 63
+
+    while (1)
+    {
+        //_delay_ms(1);  // Short delay
+        PORTB ^= (1 << TEST_PIN_MCU_Reset);  // Toggle again
+ 142:	d2 e0       	ldi	r29, 0x02	; 2
+        {
+            // Update the last time to the current time
+            wdgm_lastTime = time;
+
+            // Call the WDGM_MainFunction
+            stuck_flag = 1;
+ 144:	c1 e0       	ldi	r28, 0x01	; 1
+    SREG |= (1 << PIN_I);
+
+    while (1)
+    {
+        //_delay_ms(1);  // Short delay
+        PORTB ^= (1 << TEST_PIN_MCU_Reset);  // Toggle again
+ 146:	85 b1       	in	r24, 0x05	; 5
+ 148:	8d 27       	eor	r24, r29
+ 14a:	85 b9       	out	0x05, r24	; 5
+
+        // Check if it's time to call LEDM_Manage
+        if ((time - ledm_lastTime) >= LEDM_INTERVAL)
+ 14c:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <time>
+ 150:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <time+0x1>
+ 154:	a0 91 10 01 	lds	r26, 0x0110	; 0x800110 <time+0x2>
+ 158:	b0 91 11 01 	lds	r27, 0x0111	; 0x800111 <time+0x3>
+ 15c:	40 91 0a 01 	lds	r20, 0x010A	; 0x80010a <ledm_lastTime>
+ 160:	50 91 0b 01 	lds	r21, 0x010B	; 0x80010b <ledm_lastTime+0x1>
+ 164:	60 91 0c 01 	lds	r22, 0x010C	; 0x80010c <ledm_lastTime+0x2>
+ 168:	70 91 0d 01 	lds	r23, 0x010D	; 0x80010d <ledm_lastTime+0x3>
+ 16c:	84 1b       	sub	r24, r20
+ 16e:	95 0b       	sbc	r25, r21
+ 170:	a6 0b       	sbc	r26, r22
+ 172:	b7 0b       	sbc	r27, r23
+ 174:	0a 97       	sbiw	r24, 0x0a	; 10
+ 176:	a1 05       	cpc	r26, r1
+ 178:	b1 05       	cpc	r27, r1
+ 17a:	90 f0       	brcs	.+36     	; 0x1a0 <main+0x74>
+        {
+            // Update the last time to the current time
+            ledm_lastTime = time;
+ 17c:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <time>
+ 180:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <time+0x1>
+ 184:	a0 91 10 01 	lds	r26, 0x0110	; 0x800110 <time+0x2>
+ 188:	b0 91 11 01 	lds	r27, 0x0111	; 0x800111 <time+0x3>
+ 18c:	80 93 0a 01 	sts	0x010A, r24	; 0x80010a <ledm_lastTime>
+ 190:	90 93 0b 01 	sts	0x010B, r25	; 0x80010b <ledm_lastTime+0x1>
+ 194:	a0 93 0c 01 	sts	0x010C, r26	; 0x80010c <ledm_lastTime+0x2>
+ 198:	b0 93 0d 01 	sts	0x010D, r27	; 0x80010d <ledm_lastTime+0x3>
+
+            // Call the LED Manager
+            LEDM_Manage();
+ 19c:	0e 94 bf 01 	call	0x37e	; 0x37e <LEDM_Manage>
+        }
+
+        // Check if it's time to call WDGM_MainFunction
+        if ((time - wdgm_lastTime) >= WDGM_INTERVAL)
+ 1a0:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <time>
+ 1a4:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <time+0x1>
+ 1a8:	a0 91 10 01 	lds	r26, 0x0110	; 0x800110 <time+0x2>
+ 1ac:	b0 91 11 01 	lds	r27, 0x0111	; 0x800111 <time+0x3>
+ 1b0:	40 91 06 01 	lds	r20, 0x0106	; 0x800106 <__data_end>
+ 1b4:	50 91 07 01 	lds	r21, 0x0107	; 0x800107 <__data_end+0x1>
+ 1b8:	60 91 08 01 	lds	r22, 0x0108	; 0x800108 <__data_end+0x2>
+ 1bc:	70 91 09 01 	lds	r23, 0x0109	; 0x800109 <__data_end+0x3>
+ 1c0:	84 1b       	sub	r24, r20
+ 1c2:	95 0b       	sbc	r25, r21
+ 1c4:	a6 0b       	sbc	r26, r22
+ 1c6:	b7 0b       	sbc	r27, r23
+ 1c8:	44 97       	sbiw	r24, 0x14	; 20
+ 1ca:	a1 05       	cpc	r26, r1
+ 1cc:	b1 05       	cpc	r27, r1
+ 1ce:	08 f4       	brcc	.+2      	; 0x1d2 <main+0xa6>
+ 1d0:	ba cf       	rjmp	.-140    	; 0x146 <main+0x1a>
+        {
+            // Update the last time to the current time
+            wdgm_lastTime = time;
+ 1d2:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <time>
+ 1d6:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <time+0x1>
+ 1da:	a0 91 10 01 	lds	r26, 0x0110	; 0x800110 <time+0x2>
+ 1de:	b0 91 11 01 	lds	r27, 0x0111	; 0x800111 <time+0x3>
+ 1e2:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <__data_end>
+ 1e6:	90 93 07 01 	sts	0x0107, r25	; 0x800107 <__data_end+0x1>
+ 1ea:	a0 93 08 01 	sts	0x0108, r26	; 0x800108 <__data_end+0x2>
+ 1ee:	b0 93 09 01 	sts	0x0109, r27	; 0x800109 <__data_end+0x3>
+
+            // Call the WDGM_MainFunction
+            stuck_flag = 1;
+ 1f2:	c0 93 12 01 	sts	0x0112, r28	; 0x800112 <stuck_flag>
+ 1f6:	a7 cf       	rjmp	.-178    	; 0x146 <main+0x1a>
+
+000001f8 <GPIO_Init>:
+#define LED_PIN PB0             // Pin 0 in port B
+
+void GPIO_Init(void)
+{
+    // Initialise pin 0 in port B and test pins for the oscilloscope as output 
+    DDRB |= (1 << LED_PIN) | (1 << TEST_PIN_WDGM) | (1<<TEST_PIN_LEDM) | (1 << TEST_PIN_MCU_Reset)| (1 << TEST_PIN_WDCounter_Reset);
+ 1f8:	84 b1       	in	r24, 0x04	; 4
+ 1fa:	8f 61       	ori	r24, 0x1F	; 31
+ 1fc:	84 b9       	out	0x04, r24	; 4
+}
+ 1fe:	08 95       	ret
+
+00000200 <GPIO_Write>:
+
+void GPIO_Write(unsigned char PinId, unsigned char PinData)
+{   
+ 200:	21 e0       	ldi	r18, 0x01	; 1
+ 202:	30 e0       	ldi	r19, 0x00	; 0
+ 204:	a9 01       	movw	r20, r18
+ 206:	02 c0       	rjmp	.+4      	; 0x20c <GPIO_Write+0xc>
+ 208:	44 0f       	add	r20, r20
+ 20a:	55 1f       	adc	r21, r21
+ 20c:	8a 95       	dec	r24
+ 20e:	e2 f7       	brpl	.-8      	; 0x208 <GPIO_Write+0x8>
+ 210:	ca 01       	movw	r24, r20
+    if (PinData == 1)
+    {
+        PORTB |= (1 << PinId);  // Set the pin high (Set)
+ 212:	95 b1       	in	r25, 0x05	; 5
+    DDRB |= (1 << LED_PIN) | (1 << TEST_PIN_WDGM) | (1<<TEST_PIN_LEDM) | (1 << TEST_PIN_MCU_Reset)| (1 << TEST_PIN_WDCounter_Reset);
+}
+
+void GPIO_Write(unsigned char PinId, unsigned char PinData)
+{   
+    if (PinData == 1)
+ 214:	61 30       	cpi	r22, 0x01	; 1
+ 216:	19 f4       	brne	.+6      	; 0x21e <GPIO_Write+0x1e>
+    {
+        PORTB |= (1 << PinId);  // Set the pin high (Set)
+ 218:	89 2b       	or	r24, r25
+    }
+    else
+    {
+        PORTB &= ~(1 << PinId); // Set the pin low (Clear)
+ 21a:	85 b9       	out	0x05, r24	; 5
+    }
+}
+ 21c:	08 95       	ret
+    {
+        PORTB |= (1 << PinId);  // Set the pin high (Set)
+    }
+    else
+    {
+        PORTB &= ~(1 << PinId); // Set the pin low (Clear)
+ 21e:	80 95       	com	r24
+ 220:	89 23       	and	r24, r25
+ 222:	fb cf       	rjmp	.-10     	; 0x21a <GPIO_Write+0x1a>
+
+00000224 <WDGDrv_Init>:
+extern char stuck_flag;				// The flag that indicates whether the WDGM_MainFunction is stuck
+
+void WDGDrv_Init(void)
+{
+	// Disable global interrupts
+	SREG &= ~(1 << PIN_I);
+ 224:	8f b7       	in	r24, 0x3f	; 63
+ 226:	8f 77       	andi	r24, 0x7F	; 127
+ 228:	8f bf       	out	0x3f, r24	; 63
+
+	// Reset the timer
+	wdt_reset();
+ 22a:	a8 95       	wdr
+
+	// Clear the watchdog reset flag
+	MCUSR &= (~(1 << WDRF));
+ 22c:	84 b7       	in	r24, 0x34	; 52
+ 22e:	87 7f       	andi	r24, 0xF7	; 247
+ 230:	84 bf       	out	0x34, r24	; 52
+
+	// Set the watchdog change enable and system reset enable to 1 in the same instruction before making any changes, page 44
+	WDTCSR |= (1 << WDCE) | (1 << WDE);
+ 232:	e0 e6       	ldi	r30, 0x60	; 96
+ 234:	f0 e0       	ldi	r31, 0x00	; 0
+ 236:	80 81       	ld	r24, Z
+ 238:	88 61       	ori	r24, 0x18	; 24
+ 23a:	80 83       	st	Z, r24
+
+	// Enable system reset mode
+	// Set maximum time-out value = 8K cycles (~64ms) by seting the watchdog timer prescale pins to 0010
+	WDTCSR = (1 << WDE) | (1 << WDP1);
+ 23c:	8a e0       	ldi	r24, 0x0A	; 10
+ 23e:	80 83       	st	Z, r24
+
+	// Normal port operation, OC1A/OC1B disconnected
+	// CTC mode
+	TCCR1A = 0;
+ 240:	10 92 80 00 	sts	0x0080, r1	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
+
+	// CTC mode, prescaler 64
+	TCCR1B = (1 << WGM12) | (1 << CS11) | (1 << CS10);
+ 244:	8b e0       	ldi	r24, 0x0B	; 11
+ 246:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
+
+	// Set the compare value which achieves 50ms timer
+	// the clock frequency is 1MHz, the prescaler is 64, the timer is 16-bit
+	// sCompare value (no of pulses needed to reach the timeout) = [(clock frequency) / (prescaler*(1/desired time))]-1
+	OCR1A = TIMER1_OUTPUT_COMPARE_A;
+ 24a:	8f e2       	ldi	r24, 0x2F	; 47
+ 24c:	93 e0       	ldi	r25, 0x03	; 3
+ 24e:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 252:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+
+	// Enable Timer1 output compare A match interrupt
+	TIMSK1 = (1 << OCIE1A);
+ 256:	82 e0       	ldi	r24, 0x02	; 2
+ 258:	80 93 6f 00 	sts	0x006F, r24	; 0x80006f <__TEXT_REGION_LENGTH__+0x7f806f>
+
+	// Enable global interrupts by setting PIN_I in the AVR status register to 1
+	SREG |= (1 << PIN_I);
+ 25c:	8f b7       	in	r24, 0x3f	; 63
+ 25e:	80 68       	ori	r24, 0x80	; 128
+ 260:	8f bf       	out	0x3f, r24	; 63
+}
+ 262:	08 95       	ret
+
+00000264 <WDGDrv_IsrNotification>:
+}
+
+void WDGDrv_IsrNotification(void)
+{	
+	// Get the WDGM status from the WDGM component
+	WDGM_StatusType wdgmStatus = WDGM_PovideSuppervisionStatus();
+ 264:	0e 94 ab 01 	call	0x356	; 0x356 <WDGM_PovideSuppervisionStatus>
+
+	// Check if the WDGM status is OK and whether the WDGM_MainFunction is stuck
+	if (((wdgmStatus == OK) && (stuck_flag != 1)))
+ 268:	81 11       	cpse	r24, r1
+ 26a:	09 c0       	rjmp	.+18     	; 0x27e <WDGDrv_IsrNotification+0x1a>
+ 26c:	80 91 12 01 	lds	r24, 0x0112	; 0x800112 <stuck_flag>
+ 270:	81 30       	cpi	r24, 0x01	; 1
+ 272:	29 f0       	breq	.+10     	; 0x27e <WDGDrv_IsrNotification+0x1a>
+	{
+		// toggle WDT Counter reset 
+		PORTB ^= (1 << TEST_PIN_WDCounter_Reset);
+ 274:	85 b1       	in	r24, 0x05	; 5
+ 276:	94 e0       	ldi	r25, 0x04	; 4
+ 278:	89 27       	eor	r24, r25
+ 27a:	85 b9       	out	0x05, r24	; 5
+		// If so, refresh the watchdog
+		wdt_reset();
+ 27c:	a8 95       	wdr
+	}
+}
+ 27e:	08 95       	ret
+
+00000280 <__vector_11>:
+	// Enable global interrupts by setting PIN_I in the AVR status register to 1
+	SREG |= (1 << PIN_I);
+}
+
+ISR(TIMER1_COMPA_vect)
+{	
+ 280:	1f 92       	push	r1
+ 282:	0f 92       	push	r0
+ 284:	0f b6       	in	r0, 0x3f	; 63
+ 286:	0f 92       	push	r0
+ 288:	11 24       	eor	r1, r1
+ 28a:	2f 93       	push	r18
+ 28c:	3f 93       	push	r19
+ 28e:	4f 93       	push	r20
+ 290:	5f 93       	push	r21
+ 292:	6f 93       	push	r22
+ 294:	7f 93       	push	r23
+ 296:	8f 93       	push	r24
+ 298:	9f 93       	push	r25
+ 29a:	af 93       	push	r26
+ 29c:	bf 93       	push	r27
+ 29e:	ef 93       	push	r30
+ 2a0:	ff 93       	push	r31
+	// Call the WDGDrv_IsrNotification function at the timeout (50ms)
+	WDGDrv_IsrNotification();
+ 2a2:	0e 94 32 01 	call	0x264	; 0x264 <WDGDrv_IsrNotification>
+}
+ 2a6:	ff 91       	pop	r31
+ 2a8:	ef 91       	pop	r30
+ 2aa:	bf 91       	pop	r27
+ 2ac:	af 91       	pop	r26
+ 2ae:	9f 91       	pop	r25
+ 2b0:	8f 91       	pop	r24
+ 2b2:	7f 91       	pop	r23
+ 2b4:	6f 91       	pop	r22
+ 2b6:	5f 91       	pop	r21
+ 2b8:	4f 91       	pop	r20
+ 2ba:	3f 91       	pop	r19
+ 2bc:	2f 91       	pop	r18
+ 2be:	0f 90       	pop	r0
+ 2c0:	0f be       	out	0x3f, r0	; 63
+ 2c2:	0f 90       	pop	r0
+ 2c4:	1f 90       	pop	r1
+ 2c6:	18 95       	reti
+
+000002c8 <WDGM_Init>:
+
+
+void WDGM_Init(void)
+{
+    // Initialize internal variables
+    elapsedTime = 0;
+ 2c8:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <elapsedTime>
+ 2cc:	10 92 17 01 	sts	0x0117, r1	; 0x800117 <elapsedTime+0x1>
+ 2d0:	10 92 18 01 	sts	0x0118, r1	; 0x800118 <elapsedTime+0x2>
+ 2d4:	10 92 19 01 	sts	0x0119, r1	; 0x800119 <elapsedTime+0x3>
+    ledM_Manage_CallCount = 0;
+ 2d8:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <ledM_Manage_CallCount+0x1>
+ 2dc:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <ledM_Manage_CallCount>
+    wdgmStatus = OK;
+ 2e0:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <wdgmStatus>
+}
+ 2e4:	08 95       	ret
+
+000002e6 <WDGM_MainFunction>:
+
+void WDGM_MainFunction(void)
+{
+    // toggle WDGM 
+    PORTB ^= (1 << TEST_PIN_WDGM); 
+ 2e6:	85 b1       	in	r24, 0x05	; 5
+ 2e8:	90 e1       	ldi	r25, 0x10	; 16
+ 2ea:	89 27       	eor	r24, r25
+ 2ec:	85 b9       	out	0x05, r24	; 5
+
+    // Increment elapsed time by 20ms
+    elapsedTime += 20;
+ 2ee:	80 91 16 01 	lds	r24, 0x0116	; 0x800116 <elapsedTime>
+ 2f2:	90 91 17 01 	lds	r25, 0x0117	; 0x800117 <elapsedTime+0x1>
+ 2f6:	a0 91 18 01 	lds	r26, 0x0118	; 0x800118 <elapsedTime+0x2>
+ 2fa:	b0 91 19 01 	lds	r27, 0x0119	; 0x800119 <elapsedTime+0x3>
+ 2fe:	44 96       	adiw	r24, 0x14	; 20
+ 300:	a1 1d       	adc	r26, r1
+ 302:	b1 1d       	adc	r27, r1
+ 304:	80 93 16 01 	sts	0x0116, r24	; 0x800116 <elapsedTime>
+ 308:	90 93 17 01 	sts	0x0117, r25	; 0x800117 <elapsedTime+0x1>
+ 30c:	a0 93 18 01 	sts	0x0118, r26	; 0x800118 <elapsedTime+0x2>
+ 310:	b0 93 19 01 	sts	0x0119, r27	; 0x800119 <elapsedTime+0x3>
+
+    // Check if 100ms has passed
+    if (elapsedTime >= 100)
+ 314:	84 36       	cpi	r24, 0x64	; 100
+ 316:	91 05       	cpc	r25, r1
+ 318:	a1 05       	cpc	r26, r1
+ 31a:	b1 05       	cpc	r27, r1
+ 31c:	a8 f0       	brcs	.+42     	; 0x348 <WDGM_MainFunction+0x62>
+    {   
+        // Check if the LEDM_Manage function was called 8 to 12 times
+        // Mathematically, the function should be called 10 times (100ms / 10ms(delay) = 10 times)
+        if ((ledM_Manage_CallCount >= 8) && (ledM_Manage_CallCount <= 12))
+ 31e:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <ledM_Manage_CallCount>
+ 322:	90 91 14 01 	lds	r25, 0x0114	; 0x800114 <ledM_Manage_CallCount+0x1>
+ 326:	08 97       	sbiw	r24, 0x08	; 8
+ 328:	05 97       	sbiw	r24, 0x05	; 5
+ 32a:	88 f4       	brcc	.+34     	; 0x34e <WDGM_MainFunction+0x68>
+        {
+            wdgmStatus = OK;
+ 32c:	10 92 15 01 	sts	0x0115, r1	; 0x800115 <wdgmStatus>
+        {
+            wdgmStatus = NOK;
+        }
+
+        // Reset the elapsed time counter
+        elapsedTime = 0;
+ 330:	10 92 16 01 	sts	0x0116, r1	; 0x800116 <elapsedTime>
+ 334:	10 92 17 01 	sts	0x0117, r1	; 0x800117 <elapsedTime+0x1>
+ 338:	10 92 18 01 	sts	0x0118, r1	; 0x800118 <elapsedTime+0x2>
+ 33c:	10 92 19 01 	sts	0x0119, r1	; 0x800119 <elapsedTime+0x3>
+
+        // Reset for next period
+        ledM_Manage_CallCount = 0;
+ 340:	10 92 14 01 	sts	0x0114, r1	; 0x800114 <ledM_Manage_CallCount+0x1>
+ 344:	10 92 13 01 	sts	0x0113, r1	; 0x800113 <ledM_Manage_CallCount>
+    }
+
+    // Reset the stuck flag
+    stuck_flag = 0;
+ 348:	10 92 12 01 	sts	0x0112, r1	; 0x800112 <stuck_flag>
+}
+ 34c:	08 95       	ret
+        {
+            wdgmStatus = OK;
+        }
+        else
+        {
+            wdgmStatus = NOK;
+ 34e:	81 e0       	ldi	r24, 0x01	; 1
+ 350:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <wdgmStatus>
+ 354:	ed cf       	rjmp	.-38     	; 0x330 <WDGM_MainFunction+0x4a>
+
+00000356 <WDGM_PovideSuppervisionStatus>:
+
+WDGM_StatusType WDGM_PovideSuppervisionStatus(void)
+{   
+    // Return the status of the Watchdog Manager
+    return wdgmStatus;
+}
+ 356:	80 91 15 01 	lds	r24, 0x0115	; 0x800115 <wdgmStatus>
+ 35a:	08 95       	ret
+
+0000035c <WDGM_AlivenessIndication>:
+
+void WDGM_AlivenessIndication(void)
+{   
+    // Increment the LEDM_Manage call count
+    ledM_Manage_CallCount++;
+ 35c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <ledM_Manage_CallCount>
+ 360:	90 91 14 01 	lds	r25, 0x0114	; 0x800114 <ledM_Manage_CallCount+0x1>
+ 364:	01 96       	adiw	r24, 0x01	; 1
+ 366:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <ledM_Manage_CallCount+0x1>
+ 36a:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <ledM_Manage_CallCount>
+}
+ 36e:	08 95       	ret
+
+00000370 <LEDM_Init>:
+static uint32_t elapsedTime = 0;                // Time elapsed since the last LEDM_Manage Call
+
+void LEDM_Init(void)
+{
+    // Initialise GPIO for LED
+    GPIO_Init();
+ 370:	0e 94 fc 00 	call	0x1f8	; 0x1f8 <GPIO_Init>
+    // Set the initial state of the LED to "ON"
+    GPIO_Write(LED_PIN, ledState);
+ 374:	60 91 05 01 	lds	r22, 0x0105	; 0x800105 <ledState>
+ 378:	80 e0       	ldi	r24, 0x00	; 0
+ 37a:	0c 94 00 01 	jmp	0x200	; 0x200 <GPIO_Write>
+
+0000037e <LEDM_Manage>:
+}
+
+void LEDM_Manage(void)
+{
+    // toggle ledmanage
+    PORTB ^= (1 << TEST_PIN_LEDM);
+ 37e:	85 b1       	in	r24, 0x05	; 5
+ 380:	98 e0       	ldi	r25, 0x08	; 8
+ 382:	89 27       	eor	r24, r25
+ 384:	85 b9       	out	0x05, r24	; 5
+
+    // Increment elapsed time by 10ms
+    elapsedTime += 10;
+ 386:	80 91 1a 01 	lds	r24, 0x011A	; 0x80011a <elapsedTime>
+ 38a:	90 91 1b 01 	lds	r25, 0x011B	; 0x80011b <elapsedTime+0x1>
+ 38e:	a0 91 1c 01 	lds	r26, 0x011C	; 0x80011c <elapsedTime+0x2>
+ 392:	b0 91 1d 01 	lds	r27, 0x011D	; 0x80011d <elapsedTime+0x3>
+ 396:	0a 96       	adiw	r24, 0x0a	; 10
+ 398:	a1 1d       	adc	r26, r1
+ 39a:	b1 1d       	adc	r27, r1
+ 39c:	80 93 1a 01 	sts	0x011A, r24	; 0x80011a <elapsedTime>
+ 3a0:	90 93 1b 01 	sts	0x011B, r25	; 0x80011b <elapsedTime+0x1>
+ 3a4:	a0 93 1c 01 	sts	0x011C, r26	; 0x80011c <elapsedTime+0x2>
+ 3a8:	b0 93 1d 01 	sts	0x011D, r27	; 0x80011d <elapsedTime+0x3>
+
+    // Check if 500ms has passed
+    if (elapsedTime >= 500)
+ 3ac:	84 3f       	cpi	r24, 0xF4	; 244
+ 3ae:	91 40       	sbci	r25, 0x01	; 1
+ 3b0:	a1 05       	cpc	r26, r1
+ 3b2:	b1 05       	cpc	r27, r1
+ 3b4:	98 f0       	brcs	.+38     	; 0x3dc <LEDM_Manage+0x5e>
+    {
+        // Toggle LED state
+        ledState = (ledState == LED_ON) ? LED_OFF : LED_ON;
+ 3b6:	61 e0       	ldi	r22, 0x01	; 1
+ 3b8:	80 91 05 01 	lds	r24, 0x0105	; 0x800105 <ledState>
+ 3bc:	81 30       	cpi	r24, 0x01	; 1
+ 3be:	09 f4       	brne	.+2      	; 0x3c2 <LEDM_Manage+0x44>
+ 3c0:	60 e0       	ldi	r22, 0x00	; 0
+ 3c2:	60 93 05 01 	sts	0x0105, r22	; 0x800105 <ledState>
+
+        // Write the new state to the LED
+        GPIO_Write(LED_PIN, ledState);
+ 3c6:	80 e0       	ldi	r24, 0x00	; 0
+ 3c8:	0e 94 00 01 	call	0x200	; 0x200 <GPIO_Write>
+
+        // Reset elapsed time
+        elapsedTime = 0;
+ 3cc:	10 92 1a 01 	sts	0x011A, r1	; 0x80011a <elapsedTime>
+ 3d0:	10 92 1b 01 	sts	0x011B, r1	; 0x80011b <elapsedTime+0x1>
+ 3d4:	10 92 1c 01 	sts	0x011C, r1	; 0x80011c <elapsedTime+0x2>
+ 3d8:	10 92 1d 01 	sts	0x011D, r1	; 0x80011d <elapsedTime+0x3>
+    }
+
+    // Call WDGM Aliveness Indication to indicate that the LEDM_Manage function is running
+    // This counts the number of times the LEDM_Manage function is called
+    WDGM_AlivenessIndication();
+ 3dc:	0c 94 ae 01 	jmp	0x35c	; 0x35c <WDGM_AlivenessIndication>
+
+000003e0 <_exit>:
+ 3e0:	f8 94       	cli
+
+000003e2 <__stop_program>:
+ 3e2:	ff cf       	rjmp	.-2      	; 0x3e2 <__stop_program>

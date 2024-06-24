@@ -2,7 +2,7 @@
  * gpio.c
  *
  *  Created on  :   Sun 09 JUN 2024
- *  Authors     :   Kareem Salah, Nada Amr, Mohamed Samy, Nouran Mahmoud
+ *  Authors     :   Kareem Salah, Nada Amr, Mohamed Samy 
  */
 
 #include <avr/io.h>
