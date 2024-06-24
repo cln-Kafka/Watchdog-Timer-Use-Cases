@@ -53,5 +53,5 @@ void LEDM_Manage(void)
 
     // Call WDGM Aliveness Indication to indicate that the LEDM_Manage function is running
     // This counts the number of times the LEDM_Manage function is called
-    // WDGM_AlivenessIndication();
+     //WDGM_AlivenessIndication();
 }

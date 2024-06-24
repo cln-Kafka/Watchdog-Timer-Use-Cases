@@ -92,5 +92,7 @@ void WDGDrv_IsrNotification(void)
 		
 		// If so, refresh the watchdog
 		wdt_reset();
+	} else{
+		wdt_enable(WDTO_15MS);
 	}
 }

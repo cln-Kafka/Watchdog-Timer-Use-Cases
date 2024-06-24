@@ -250,7 +250,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000      0x3e8
+.text           0x0000000000000000      0x3fe
  *(.vectors)
  .vectors       0x0000000000000000       0x68 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
                 0x0000000000000000                __vector_default
@@ -365,73 +365,73 @@ END GROUP
                 0x0000000000000228       0x40 ./WDGDrv/WDGDrv.o
                 0x0000000000000228                WDGDrv_Init
  .text.WDGDrv_IsrNotification
-                0x0000000000000268       0x1c ./WDGDrv/WDGDrv.o
+                0x0000000000000268       0x32 ./WDGDrv/WDGDrv.o
                 0x0000000000000268                WDGDrv_IsrNotification
  .text.__vector_11
-                0x0000000000000284       0x48 ./WDGDrv/WDGDrv.o
-                0x0000000000000284                __vector_11
+                0x000000000000029a       0x48 ./WDGDrv/WDGDrv.o
+                0x000000000000029a                __vector_11
  .text.WDGM_Init
-                0x00000000000002cc       0x1e ./WDGDM/WDGM.o
-                0x00000000000002cc                WDGM_Init
+                0x00000000000002e2       0x1e ./WDGDM/WDGM.o
+                0x00000000000002e2                WDGM_Init
  .text.WDGM_MainFunction
-                0x00000000000002ea       0x70 ./WDGDM/WDGM.o
-                0x00000000000002ea                WDGM_MainFunction
+                0x0000000000000300       0x70 ./WDGDM/WDGM.o
+                0x0000000000000300                WDGM_MainFunction
  .text.WDGM_PovideSuppervisionStatus
-                0x000000000000035a        0x6 ./WDGDM/WDGM.o
-                0x000000000000035a                WDGM_PovideSuppervisionStatus
+                0x0000000000000370        0x6 ./WDGDM/WDGM.o
+                0x0000000000000370                WDGM_PovideSuppervisionStatus
  .text.WDGM_AlivenessIndication
-                0x0000000000000360       0x14 ./WDGDM/WDGM.o
-                0x0000000000000360                WDGM_AlivenessIndication
+                0x0000000000000376       0x14 ./WDGDM/WDGM.o
+                0x0000000000000376                WDGM_AlivenessIndication
  .text.LEDM_Init
-                0x0000000000000374        0xe ./LEDMgr/LEDM.o
-                0x0000000000000374                LEDM_Init
+                0x000000000000038a        0xe ./LEDMgr/LEDM.o
+                0x000000000000038a                LEDM_Init
  .text.LEDM_Manage
-                0x0000000000000382       0x62 ./LEDMgr/LEDM.o
-                0x0000000000000382                LEDM_Manage
+                0x0000000000000398       0x62 ./LEDMgr/LEDM.o
+                0x0000000000000398                LEDM_Manage
  .text.libgcc.mul
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.div
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.prologue
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.builtins
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fmul
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.fixed
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  .text.libgcc.mul
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.div
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.prologue
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.builtins
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fmul
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.fixed
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_copy_data.o)
  .text.libgcc.mul
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.div
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
- .text.libgcc   0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.prologue
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.builtins
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fmul
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
  .text.libgcc.fixed
-                0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
-                0x00000000000003e4                . = ALIGN (0x2)
+                0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_clear_bss.o)
+                0x00000000000003fa                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000000000003e4        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
-                0x00000000000003e4                _exit
-                0x00000000000003e4                exit
+ .fini9         0x00000000000003fa        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+                0x00000000000003fa                _exit
+                0x00000000000003fa                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -450,11 +450,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000000000003e4        0x4 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000000000003fa        0x4 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000003e8                _etext = .
+                0x00000000000003fe                _etext = .
 
-.data           0x0000000000800100        0x6 load address 0x00000000000003e8
+.data           0x0000000000800100        0x6 load address 0x00000000000003fe
                 0x0000000000800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x0000000000800100        0x0 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
@@ -517,8 +517,8 @@ END GROUP
                 0x000000000080011a        0x4 ./LEDMgr/LEDM.o
  *(COMMON)
                 0x000000000080011e                PROVIDE (__bss_end, .)
-                0x00000000000003e8                __data_load_start = LOADADDR (.data)
-                0x00000000000003ee                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000000000003fe                __data_load_start = LOADADDR (.data)
+                0x0000000000000404                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x000000000080011e        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
@@ -609,32 +609,32 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000      0xc37
+.debug_info     0x0000000000000000      0xc71
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x5f4 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
  .debug_info    0x00000000000005f4      0x1c0 ./src/main.o
  .debug_info    0x00000000000007b4       0xbe ./gpio/gpio.o
- .debug_info    0x0000000000000872      0x151 ./WDGDrv/WDGDrv.o
- .debug_info    0x00000000000009c3      0x143 ./WDGDM/WDGM.o
- .debug_info    0x0000000000000b06      0x131 ./LEDMgr/LEDM.o
+ .debug_info    0x0000000000000872      0x18b ./WDGDrv/WDGDrv.o
+ .debug_info    0x00000000000009fd      0x143 ./WDGDM/WDGM.o
+ .debug_info    0x0000000000000b40      0x131 ./LEDMgr/LEDM.o
 
-.debug_abbrev   0x0000000000000000      0x94b
+.debug_abbrev   0x0000000000000000      0x98a
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x5a2 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
  .debug_abbrev  0x00000000000005a2       0xbb ./src/main.o
  .debug_abbrev  0x000000000000065d       0x8c ./gpio/gpio.o
- .debug_abbrev  0x00000000000006e9      0x103 ./WDGDrv/WDGDrv.o
- .debug_abbrev  0x00000000000007ec       0xa8 ./WDGDM/WDGM.o
- .debug_abbrev  0x0000000000000894       0xb7 ./LEDMgr/LEDM.o
+ .debug_abbrev  0x00000000000006e9      0x142 ./WDGDrv/WDGDrv.o
+ .debug_abbrev  0x000000000000082b       0xa8 ./WDGDM/WDGM.o
+ .debug_abbrev  0x00000000000008d3       0xb7 ./LEDMgr/LEDM.o
 
-.debug_line     0x0000000000000000      0xf92
+.debug_line     0x0000000000000000      0xf9e
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000       0x1a c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
  .debug_line    0x000000000000001a      0x4e2 ./src/main.o
  .debug_line    0x00000000000004fc      0x1c1 ./gpio/gpio.o
- .debug_line    0x00000000000006bd      0x350 ./WDGDrv/WDGDrv.o
- .debug_line    0x0000000000000a0d      0x2a5 ./WDGDM/WDGM.o
- .debug_line    0x0000000000000cb2      0x2e0 ./LEDMgr/LEDM.o
+ .debug_line    0x00000000000006bd      0x35c ./WDGDrv/WDGDrv.o
+ .debug_line    0x0000000000000a19      0x2a5 ./WDGDM/WDGM.o
+ .debug_line    0x0000000000000cbe      0x2e0 ./LEDMgr/LEDM.o
 
 .debug_frame    0x0000000000000000      0x1d0
  *(.debug_frame)
@@ -644,18 +644,18 @@ END GROUP
  .debug_frame   0x0000000000000148       0x54 ./WDGDM/WDGM.o
  .debug_frame   0x000000000000019c       0x34 ./LEDMgr/LEDM.o
 
-.debug_str      0x0000000000000000     0x7777
+.debug_str      0x0000000000000000     0x7788
  *(.debug_str)
  .debug_str     0x0000000000000000      0x208 c:/toolbox/avr8-gnu-toolchain-win32_x86_64/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o
  .debug_str     0x0000000000000208     0x732a ./src/main.o
                                        0x73df (size before relaxing)
  .debug_str     0x0000000000007532       0x3e ./gpio/gpio.o
                                        0x6ba5 (size before relaxing)
- .debug_str     0x0000000000007570      0x17f ./WDGDrv/WDGDrv.o
-                                       0x7085 (size before relaxing)
- .debug_str     0x00000000000076ef       0x52 ./WDGDM/WDGM.o
+ .debug_str     0x0000000000007570      0x190 ./WDGDrv/WDGDrv.o
+                                       0x7096 (size before relaxing)
+ .debug_str     0x0000000000007700       0x52 ./WDGDM/WDGM.o
                                        0x6c26 (size before relaxing)
- .debug_str     0x0000000000007741       0x36 ./LEDMgr/LEDM.o
+ .debug_str     0x0000000000007752       0x36 ./LEDMgr/LEDM.o
                                        0x6c09 (size before relaxing)
 
 .debug_loc      0x0000000000000000      0x1ab

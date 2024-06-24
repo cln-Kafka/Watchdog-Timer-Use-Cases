@@ -34,15 +34,15 @@ unsigned long wdgm_lastTime = 0;                // Time marker for the last WDGM
 
 /* Function Prototypes */
 void Timer0_Init(void);
-// void __vector_reset(void) __attribute__ ((signal, used, externally_visible));
+void __vector_reset(void) __attribute__ ((signal, used, externally_visible));
 
-// /* Vector Reset Function */
-// void __vector_reset(void)
-// {
-//     DDRB |= (1 << TEST_PIN_MCU_Reset);  // Set as output
-//     PORTB ^= (1 << TEST_PIN_MCU_Reset); // Toggle
-//     asm("jmp 0");  // Jump to the actual reset vector
-// }
+/* Vector Reset Function */
+void __vector_reset(void)
+{
+    DDRB |= (1 << TEST_PIN_MCU_Reset);  // Set as output
+    PORTB ^= (1 << TEST_PIN_MCU_Reset); // Toggle
+    asm("jmp 0");  // Jump to the actual reset vector
+}
 
 /* Timer0 Initialization */
 void Timer0_Init(void)
@@ -70,7 +70,7 @@ ISR(TIMER0_COMPA_vect)
 
 int main()
 {
-	PORTB ^= (1 << TEST_PIN_MCU_Reset);  // Toggle again
+    PORTB ^= (1 << TEST_PIN_MCU_Reset);  // Toggle again
 
     // Initialize peripherals
     LEDM_Init();                // LED Manager
@@ -84,7 +84,6 @@ int main()
     while (1)
     {
         
-
 
         // Check if it's time to call LEDM_Manage
         if ((time - ledm_lastTime) >= LEDM_INTERVAL)
