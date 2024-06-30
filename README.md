@@ -3,7 +3,7 @@
 ## Table of Contents
 - [Description](#description)
 - [Main Components](#main-components)
-- [Our Results](#our-results)
+- [Results and Discussion](#results-and-discussion)
 - [Reproduce the same results!](#reproduce-the-same-results)
 - [Dependency Installation](#dependency-installation)
 - [Program Flow: Simplified Version](#program-flow-simplified-version)
@@ -19,7 +19,7 @@ This project aims to implement the watchdog timer driver for the ATmega328p AVR 
 
 The watchdog timer operates like a countdown counter, starting from a specified value and decrementing towards zero. During normal operation, the system should reset the watchdog timer to its initial value at the end of each cycle. If the system fails to refresh the watchdog timer and it reaches zero, the watchdog timer will reset the system. This behavior indicates a potential malfunction that prevented the system from refreshing the watchdog timer.
 
-The tests include a positive scenario where everything functions correctly and the system successfully refreshes the watchdog timer. Additionally, there are three negative scenarios discussed in the [Our Results](#our-results) section, where the system fails to refresh the watchdog timer, triggering a reset to demonstrate the watchdog timer's protective mechanism.
+The tests include a positive scenario where everything functions correctly and the system successfully refreshes the watchdog timer. Additionally, there are three negative scenarios discussed in the [Results and Discussion](#results-and-discussion) section, where the system fails to refresh the watchdog timer, triggering a reset to demonstrate the watchdog timer's protective mechanism.
 
 ## Main Components
 
@@ -27,19 +27,19 @@ The tests include a positive scenario where everything functions correctly and t
 
 This component includes two functions:
 
-- **`GPIO_Init`**: This function only configures the pin that the LED is connected to as output.
+* **`GPIO_Init`**: This function only configures the pin that the LED is connected to as output.
 
-- **`GPIO_Write`**: This function takes the preferred state of the LED, either ON (1) or OFF (0), and depending on it, it sets the LED pin to high or low.
+* **`GPIO_Write`**: This function takes the preferred state of the LED, either ON (1) or OFF (0), and depending on it, it sets the LED pin to high or low.
 
 ### LED State Manager `LEDMgr`
 
 This component includes two functions:
 
-- **`LEDM_Init`**: This function initializes the LED pin and sets its initial state.
+* **`LEDM_Init`**: This function initializes the LED pin and sets its initial state.
   - It calls `GPIO_Init` to configure the LED pin as an output.
   - It sets the initial state of the LED to "High" by calling `GPIO_Write`, which writes a 1 to the LED pin bit position in the port data register.
 
-- **`LEDM_Manage`**: This function is intended to be called repeatedly inside the super loop of the `main` function in `main.c`. It has two main responsibilities:
+* **`LEDM_Manage`**: This function is intended to be called repeatedly inside the super loop of the `main` function in `main.c`. It has two main responsibilities:
    - Toggling the LED state every 500ms.
    - Calling `WDGM_AlivenessIndication` each time it is executed to indicate the function's aliveness.
 
@@ -47,27 +47,40 @@ This component includes two functions:
 
 This component includes four functions:
 
-- **`WDGM_Init`**: This function initializes the internal variables of the Watchdog Manager, setting them to their initial values.
+* **`WDGM_Init`**: This function initializes the internal variables of the Watchdog Manager, setting them to their initial values.
 
-- **`WDGM_MainFunction`**: This function is called in the super loop of the `main` function in `main.c`. Every 100ms, it checks the call rate of the `LEDM_Manage` function to ensure it falls within a valid range. Ideally, `LEDM_Manage` should be called 10 times per 100ms. Due to possible delays in hardware components, it accepts a range of 8 to 12 calls per 100ms. If the call rate is within this range, it sets the global variable `wdgmStatus` to `OK`, indicating normal operation. Otherwise, it sets `wdgmStatus` to `NOK`, signaling a potential issue.
+* **`WDGM_MainFunction`**: This function is called in the super loop of the `main` function in `main.c`. Every 100ms, it checks the call rate of the `LEDM_Manage` function to ensure it falls within a valid range. Ideally, `LEDM_Manage` should be called 10 times per 100ms. Due to possible delays in hardware components, it accepts a range of 8 to 12 calls per 100ms. If the call rate is within this range, it sets the global variable `wdgmStatus` to `OK`, indicating normal operation. Otherwise, it sets `wdgmStatus` to `NOK`, signaling a potential issue.
 
-- **`WDGM_ProvideSupervisionStatus`**: This function returns the current status of the Watchdog Manager (`wdgmStatus`). It is used by the `WDGDrv` file to determine if the system is functioning normally or if there is a malfunction requiring a system reset.
+* **`WDGM_ProvideSupervisionStatus`**: This function returns the current status of the Watchdog Manager (`wdgmStatus`). It is used by the `WDGDrv` file to determine if the system is functioning normally or if there is a malfunction requiring a system reset.
 
-- **`WDGM_AlivenessIndication`**: This function is called by `LEDM_Manage` each time it is executed. It increments a global counter that tracks the number of times `LEDM_Manage` has been called within the 100ms period.
+* **`WDGM_AlivenessIndication`**: This function is called by `LEDM_Manage` each time it is executed. It increments a global counter that tracks the number of times `LEDM_Manage` has been called within the 100ms period.
 
 ### Watchdog Driver `WDGDrv`
 
-This component includes two main functions and one helper function that is needed in case we're using ATmega328p:
+This component includes two main functions and one helper function that are needed for the Watchdog Driver:
 
-- `WDGDrv_Init`: This function initializes 
+* **`WDGDrv_Init`**: This function initializes the watchdog timer.
+  - **For ATmega328p AVR**:
+    - Sets the maximum timeout value to 64ms.
+    - Activates the watchdog.
+    - Optionally initializes another timer, depending on your implementation. This can be included here or in a separate function or source file.
 
-- `ISR(TIMER1_COMPA_vect)`:
+  - **For STM32F401xE**:
+    - Sets the maximum timeout value to 50ms.
+    - Disables the window mode.
+    - Enables the early interrupt feature.
+    - Activates the watchdog.
 
-- `WDGDrv_IsrNotification`:
+* **`ISR(TIMER1_COMPA_vect)`**: This is the Interrupt Service Routine (ISR) executed when Timer1 reaches the compare value (50ms). It calls the `WDGDrv_IsrNotification` function to handle the watchdog functionality.
 
-## Our Results
+* **`WDGDrv_IsrNotification`**: This function retrieves the status of the Watchdog Manager using `WDGM_PovideSuppervisionStatus()` and checks if the system is stuck in the `WDGM_MainFunction`. Based on this check:
+  - If the status is `OK` and the system is not stuck (`stuck_flag != 1`), it refreshes the watchdog timer.
+  - If the system is stuck, no action is taken, which allows the watchdog timer to expire and potentially reset the system.
+
+## Results and Discussion
 
 ## Reproduce the same results!
+
 
 ## Dependency Installation
 
