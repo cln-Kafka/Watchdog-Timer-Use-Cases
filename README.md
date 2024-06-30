@@ -3,8 +3,8 @@
 ## Table of Contents
 - [Description](#description)
 - [Main Components](#main-components)
-- [Results and Discussion](#results-and-discussion)
-- [Reproduce the same results!](#reproduce-the-same-results)
+- [Observations and Discussion](#observations-and-discussion)
+- [Reproducing the Results](#reproducing-the-results)
 - [Dependency Installation](#dependency-installation)
 - [Program Flow: Simplified Version](#program-flow-simplified-version)
 - [Toolstack](#toolstack)
@@ -19,7 +19,7 @@ This project aims to implement the watchdog timer driver for the ATmega328p AVR 
 
 The watchdog timer operates like a countdown counter, starting from a specified value and decrementing towards zero. During normal operation, the system should reset the watchdog timer to its initial value at the end of each cycle. If the system fails to refresh the watchdog timer and it reaches zero, the watchdog timer will reset the system. This behavior indicates a potential malfunction that prevented the system from refreshing the watchdog timer.
 
-The tests include a positive scenario where everything functions correctly and the system successfully refreshes the watchdog timer. Additionally, there are three negative scenarios discussed in the [Results and Discussion](#results-and-discussion) section, where the system fails to refresh the watchdog timer, triggering a reset to demonstrate the watchdog timer's protective mechanism.
+The tests include a positive scenario where everything functions correctly and the system successfully refreshes the watchdog timer. Additionally, there are three negative scenarios discussed in the [Observations and Discussion](#observations-and-discussion) section, where the system fails to refresh the watchdog timer, triggering a reset to demonstrate the watchdog timer's protective mechanism.
 
 ## Main Components
 
@@ -77,16 +77,41 @@ This component includes two main functions and one helper function that are need
   - If the status is `OK` and the system is not stuck (`stuck_flag != 1`), it refreshes the watchdog timer.
   - If the system is stuck, no action is taken, which allows the watchdog timer to expire and potentially reset the system.
 
-## Results and Discussion
+## Observations and Discussion
 
-## Reproduce the same results!
+### Scenario A: Positive Scenario
 
+### Scenario B: Negative Scenario
+
+In this scenario, we should comment the call of the `WDGM_MainFunction` function in the `main` function. We expect the watchdog timer to reset the system each 64ms.
+
+### Scenario C: Negative Scenario
+
+In this scenario, we should comment the call of the `WDGM_AlivenessIndication` function in the `LEDM_Manage` function. we expect the watchdog timer to reset the system after 114ms.
+
+### Scenario D: Negative Scenario
+
+In this scenario, we should decrease the periodicity of the call of the `LEDM_Manage` to be every 5ms. we expect the watchdog timer to reset the system after 114ms.
+
+## Reproducing the Results
+
+1. **Install ATmega328p**: Follow the ATmega328p installation guide in the [Dependency Installation](#dependency-installation) section.
+2. **Import Project**: Import the project from [BlinkingLed_with_Watchdog](https://github.com/cln-Kafka/Watchdog-Timer-Use-Cases/tree/main/Code-for-AVR-ATmega328p/BlinkingLed_with_Watchdog) into Eclipse IDE.
+3. **Rebuild Project**: Rebuild the project in Eclipse.
+4. **Open Simulation**: Open the [simulation file](https://github.com/cln-Kafka/Watchdog-Timer-Use-Cases/tree/main/Proteus_Simulation) in Proteus (preferably **version 8.9**).
+5. **Load Program File**: In Proteus, ensure the `.elf` or `.hex` file is loaded in the `Program File` field by double-clicking the microcontroller.
+6. **Run Simulation**: Start the simulation. By default, the code is set to the positive scenario.
+
+**To Reproduce Negative Scenarios**:
+
+- **Option 1**: Follow the above steps but open the specific scenario project in Eclipse. These projects are available [here](https://github.com/cln-Kafka/Watchdog-Timer-Use-Cases/tree/main/Code-for-AVR-ATmega328p/Scenarios).
+- **Option 2**: Edit the original project files to comment out the lines specified for each scenario. Rebuild the project in Eclipse and then run the simulation.
 
 ## Dependency Installation
 
-### STM32F401xE
+### STM32F401xE Microcontroller
 
-### AVR ATmega328p
+### ATmega328p AVR Microcontroller
 
 1. Install the AVR toolchain from [here](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers#:~:text=Toolchain%206.3.1%20Source-,Downloads,-Downloads). Note that you should select AVR 8-Bit Toolchain depending on the operating system you are using.
 2. Extract the downloaded zip folder to any preferable location.
