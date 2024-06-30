@@ -31,11 +31,30 @@
 
 ## Dependency Installation
 
-### AVR ATmega328p
-
 ### STM32F401xE
 
+### AVR ATmega328p
+
+1. Install the AVR toolchain from [here](https://www.microchip.com/en-us/tools-resources/develop/microchip-studio/gcc-compilers#:~:text=Toolchain%206.3.1%20Source-,Downloads,-Downloads). Note that you should select AVR 8-Bit Toolchain depending on the operating system you are using.
+2. Extract the downloaded zip folder to any preferable location.
+3. Install the AVR plugin to Eclipse by following these steps:
+   - From the `Help` menu, open `Eclipse Marketplace`.
+   - Search for and install `AVR Eclipse Plugin`.
+4. Before creating a project, remember to add the AVR paths to the system by following these steps.
+   - From the `Window` menu, open `Preferences`.
+   - From the right sidebar, open `AVR` then `Paths`.
+   - Add the `AVR GCC` path by clicking the "Edit" button, changing the source to "Custom," and setting the current value to the `bin` folder of the toolchain you downloaded.
+   - Add the `AVR Header Files` by making the same steps, but the current value will be set to the `include` folder nested in the `avr` folder of the toolchain.
+   - Regarding the `GNU make`, you should first download the `xpack build tools` and then add its `bin` folder in its "current value" field.
+
 ## Program Flow: Simplified Version
+
+- The program starts by initializing the LED pin and setting it to ON.
+- Each 10ms, the `LEDM_Manage` is called. Inside this function,
+  - The LED state only changes if 500ms has passed.
+  - We call the `WDGM_AlivenessIndication` to keep a count of how many times the `LEDM_Manage` was called.
+- Returning to the `main` function, each 20ms, the `WDGM_MainFunction` to make sure the system works fine and the `LEDM_Manage` is called at a normal rate (8-12 times per 100ms, ideally it should be 10 times per 100ms).
+- In parallel, if 50ms are passed, the `WDGDrv_IsrNotification` is called. This function checks if the `LEDM_Manage` is called at a correct rate and the program didn't get stuck at any phase (specifically in the `WDGM_MainFunction` function). Depending on that check, either the system gets reset or the watchdog gets refreshed.
 
 ## Toolstack
 
