@@ -1,0 +1,3 @@
+WDGDM/WDGM.o: ../WDGDM/WDGM.c ../WDGDM/WDGM.h
+
+../WDGDM/WDGM.h:
