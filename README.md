@@ -8,6 +8,7 @@
 - [Dependency Installation](#dependency-installation)
 - [Program Flow: Simplified Version](#program-flow-simplified-version)
 - [Toolstack](#toolstack)
+- [References](#references)
 - [Help](#help)
 - [Contribution](#contribution)
 - [License](#license)
@@ -37,6 +38,23 @@
 ## Program Flow: Simplified Version
 
 ## Toolstack
+
+<p align="left"> 
+  <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> 
+    <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> 
+  </a>
+  <a href="https://www.eclipse.org/" target="_blank" rel="noreferrer"> 
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Eclipse-Luna-Logo.svg" alt="eclipse" width="40" height="40"/> 
+  </a>
+  <a href="https://www.labcenter.com/" target="_blank" rel="noreferrer"> 
+    <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Proteus_Design_Suite_Atom_Logo.png" alt="proteus" width="54" height="40"/> 
+  </a>
+</p>
+
+## References
+
+1. [Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf)
+2. [RM0368 Reference manual - STM32F401xB/C and STM32F401xD/E - advanced Arm®-based 32-bit MCUs](https://www.st.com/resource/en/reference_manual/rm0368-stm32f401xbc-and-stm32f401xde-advanced-armbased-32bit-mcus-stmicroelectronics.pdf)
 
 ## Help
 
