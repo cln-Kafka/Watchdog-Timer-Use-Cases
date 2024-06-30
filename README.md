@@ -1,8 +1,9 @@
-# Watchdog Timer Use cases
+# Watchdog Timer Use Cases
 
 ## Table of Contents
 - [Description](#description)
-- [Main Components](#main-components)
+- [Code Components](#code-components)
+- [Simulation Components](#simulation-components)
 - [Observations and Discussion](#observations-and-discussion)
 - [Reproducing the Results](#reproducing-the-results)
 - [Dependency Installation](#dependency-installation)
@@ -21,7 +22,7 @@ The watchdog timer operates like a countdown counter, starting from a specified 
 
 The tests include a positive scenario where everything functions correctly and the system successfully refreshes the watchdog timer. Additionally, there are three negative scenarios discussed in the [Observations and Discussion](#observations-and-discussion) section, where the system fails to refresh the watchdog timer, triggering a reset to demonstrate the watchdog timer's protective mechanism.
 
-## Main Components
+## Code Components
 
 ### Pin Controller `GPIO`
 
@@ -77,21 +78,39 @@ This component includes two main functions and one helper function that are need
   - If the status is `OK` and the system is not stuck (`stuck_flag != 1`), it refreshes the watchdog timer.
   - If the system is stuck, no action is taken, which allows the watchdog timer to expire and potentially reset the system.
 
+## Simulation Components
+
+![Simulation File](README-Assets/Simulation_Components.png)
+
 ## Observations and Discussion
 
 ### Scenario A: Positive Scenario
+
+In this scenario, the system works perfectly normally and refreshes the watchdog at the correct time.
+
+![Scenario A - Led Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20A/Results/Scenario_A-LED_Oscilloscope.jpg)
+![Scenario A - 4 Channel Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20A/Results/Scenario_A-4_Channel_Oscilloscope.jpg)
 
 ### Scenario B: Negative Scenario
 
 In this scenario, we should comment the call of the `WDGM_MainFunction` function in the `main` function. We expect the watchdog timer to reset the system each 64ms.
 
+![Scenario B - Led Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20B/Results/Scenario_B-LED_Oscilloscope.jpg)
+![Scenario B - 4 Channel Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20B/Results/Scenario_B-4_Channel_Oscilloscope.jpg)
+
 ### Scenario C: Negative Scenario
 
 In this scenario, we should comment the call of the `WDGM_AlivenessIndication` function in the `LEDM_Manage` function. we expect the watchdog timer to reset the system after 114ms.
 
+![Scenario C - Led Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20C/Results/Scenario_C-LED_Oscilloscope.jpg)
+![Scenario C - 4 Channel Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20C/Results/Scenario_C-4_Channel_Oscilloscope.jpg)
+
 ### Scenario D: Negative Scenario
 
 In this scenario, we should decrease the periodicity of the call of the `LEDM_Manage` to be every 5ms. we expect the watchdog timer to reset the system after 114ms.
+
+![Scenario D - Led Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20D/Results/Scenario_D-LED_Oscilloscope.jpg)
+![Scenario D - 4 Channel Oscilloscope](Code-for-AVR-ATmega328p/Scenarios/Scenario%20D/Results/Scenario_D-4_Channel_Oscilloscope.jpg)
 
 ## Reproducing the Results
 
@@ -121,9 +140,9 @@ In this scenario, we should decrease the periodicity of the call of the `LEDM_Ma
 4. Before creating a project, remember to add the AVR paths to the system by following these steps.
    - From the `Window` menu, open `Preferences`.
    - From the right sidebar, open `AVR` then `Paths`.
-   - Add the `AVR GCC` path by clicking the "Edit" button, changing the source to "Custom," and setting the current value to the `bin` folder of the toolchain you downloaded.
-   - Add the `AVR Header Files` by making the same steps, but the current value will be set to the `include` folder nested in the `avr` folder of the toolchain.
-   - Regarding the `GNU make`, you should first download the `xpack build tools` and then add its `bin` folder in its "current value" field.
+   - Add the `AVR GCC` path by clicking the "Edit" button, changing the source to "Custom," and setting the "current value" to the `bin` folder of the toolchain you downloaded.
+   - Add the `AVR Header Files` by making the same steps, but the "current value" will be set to the `include` folder nested in the `avr` folder of the toolchain.
+   - Regarding the `GNU make`, you should first download the `xpack build tools` and then add the path to its `bin` folder in the "current value" field.
 
 ## Program Flow: Simplified Version
 
