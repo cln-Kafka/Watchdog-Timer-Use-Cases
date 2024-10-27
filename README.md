@@ -187,4 +187,7 @@ Gratitude goes out to all team members for their valuable contributions to this 
 ## License
 
 This repo is under the MIT license. See [LICENSE](LICENSE) for details.
-All rights reserved © 2024 to Team 14 of the Embedded Systems Course - Systems & Biomedical Engineering, Cairo University (Class 2025).
+
+---
+
+Made with ❤️ by Team 14 of the Embedded Systems Course - Systems & Biomedical Engineering, Cairo University (Class 2025).
